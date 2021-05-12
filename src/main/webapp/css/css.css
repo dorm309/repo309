@@ -1,0 +1,56 @@
+*{
+    margin: 0 auto;
+    padding: auto;
+}
+a{
+    text-decoration: none;
+}
+.w{
+    width: 1200px;
+    margin: auto;
+}
+
+.header {
+    width: 1700px;
+    height:80px;
+    /* padding: auto; */
+    background-color: rgb(255,255,255);
+
+}
+.header .logo{
+    margin-left: 25px;
+    margin-top:20px;
+    width: 60px;
+    height: 60px;
+    background-image: url(../image/logo.png);
+    background-size: 100%;
+}
+.contain{
+ position: relative;
+    width: 1700px;
+    height: 710px;
+    /* background-color: rgb(204, 42, 42); */
+    background-image:url(../image/bg.png)
+
+}
+.login{
+    position:absolute;
+    top: 150px;
+    right: 160px;
+    width: 430px;
+    height: 430px;
+    background-color: rgb(254, 251, 252);
+}
+.login form{
+    padding:44px 32px;
+}
+.login .login-btn{
+    margin-top: 15px;
+    width: 300px;
+    color: white;
+    background-color: rgb(24, 141, 236);
+}
+.login span {
+    float:right;
+    margin: 40px;
+}
