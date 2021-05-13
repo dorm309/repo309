@@ -4,26 +4,38 @@
 }
 a{
     text-decoration: none;
+    color: inherit;
 }
 .w{
     width: 1200px;
     margin: auto;
+    background-color: rgb(25, 129, 129);
 }
 
-.header {
+.login-header{
     width: 1700px;
     height:80px;
     /* padding: auto; */
     background-color: rgb(255,255,255);
 
 }
-.header .logo{
+.login-header .logo{
+    float: left;
     margin-left: 25px;
-    margin-top:20px;
+    margin-top:10px;
     width: 60px;
     height: 60px;
     background-image: url(../image/logo.png);
     background-size: 100%;
+}
+.login-header .login-logo{
+    float: left;
+    margin-left: 25px;
+    margin-top:10px;
+    /* width: 60px; */
+    height: 60px;
+    line-height: 60px;
+    font-size: 30px;
 }
 .contain{
  position: relative;
@@ -36,7 +48,7 @@ a{
 .login{
     position:absolute;
     top: 150px;
-    right: 160px;
+    right: 250px;
     width: 430px;
     height: 430px;
     background-color: rgb(254, 251, 252);
@@ -53,4 +65,55 @@ a{
 .login span {
     float:right;
     margin: 40px;
+}
+
+
+/* 注册模块 */
+.regist-nav{
+    margin: 0 auto;
+    height: 35px;
+    background-color: #F5F5F5;
+}
+.regist-layout{
+    width: 1200px;
+    margin: auto;
+}
+.regist-layout .header{
+    height:80px;
+    /* padding: auto; */
+    background-color: rgb(255,255,255);
+}
+.regist-layout .logo{
+    float: left;
+    margin-left: 25px;
+    margin-top:20px;
+    width: 60px;
+    height: 60px;
+    background-image: url(../image/logo.png);
+    background-size: 100%;
+}
+.regist-logo{
+    float: left;
+    margin-left: 25px;
+    margin-top:20px;
+    /* width: 60px; */
+    height: 60px;
+    line-height: 60px;
+    font-size: 30px;
+    /* background-color: blue; */
+}
+.regist{
+    position:absolute;
+    top: 190px;
+    right: 50%;
+    /* margin-left: 215px; */
+    margin-right:-388px;
+    width: 776px;
+    height: 430px;
+}
+.regist .regist-btn{
+    margin-top: 15px;
+    width: 300px;
+    color: white;
+    background-color: rgb(24, 141, 236);
 }
