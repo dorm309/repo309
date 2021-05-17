@@ -6,14 +6,39 @@ a{
     text-decoration: none;
     color: inherit;
 }
+a {
+    text-decoration: none;
+}
+/*正常的未被访问过的链接*/
+a:link {
+    text-decoration: none;
+}
+/*已经访问过的链接*/
+a:visited {
+    text-decoration: none;
+}
+/*鼠标划过(停留)的链接*/
+a:hover {
+    text-decoration: none;
+}
+/* 正在点击的链接*/
+a:active {
+    text-decoration: none;
+}
+li{
+    list-style:none;
+}
 .w{
-    width: 1200px;
+    width: 1100px;
     margin: auto;
-    background-color: rgb(25, 129, 129);
+    background-color: #f7f7f7;
+    /* height: 300px; */
 }
 
 .login-header{
-    width: 1700px;
+    /* width: 1700px; */
+    width: 1600px;
+
     height:80px;
     /* padding: auto; */
     background-color: rgb(255,255,255);
@@ -39,10 +64,11 @@ a{
 }
 .contain{
  position: relative;
-    width: 1700px;
+    width: 1600px;
     height: 710px;
     /* background-color: rgb(204, 42, 42); */
-    background-image:url(../image/bg.png)
+    background-image:url(../image/bg.png) 
+    
 
 }
 .login{
@@ -75,7 +101,7 @@ a{
     background-color: #F5F5F5;
 }
 .regist-layout{
-    width: 1200px;
+    width: 1100px;
     margin: auto;
 }
 .regist-layout .header{
@@ -116,4 +142,58 @@ a{
     width: 300px;
     color: white;
     background-color: rgb(24, 141, 236);
+}
+
+/* 用户中心 */
+.userinfo-nav{
+    margin: 0 auto;
+    height: 35px;
+    background-color: #fff;
+
+}
+
+.userinfo-left{
+    /* position: relative; */
+    margin-top: 15px;
+    float: left ;
+    width: 300px;
+    height: 600px;
+    /* border: #222222 1px solid; */
+    border-radius: 8px;
+    box-shadow: 0px 1px 2px rgba(var(--dsw-base-rgb), 0.1);
+    background-color: #fff;
+}
+.userinfo-left li{
+    height: 45px;
+}
+.userinfo-left li a{
+    display: block;
+    /* padding: 20px; */
+    height: 45px;
+    text-indent: 20px;
+    line-height: 45px;
+    font-size: 14px;
+    border-left: 3px solid transparent;
+}
+.userinfo-left li a:hover{
+    background-color: #f7f7f7;
+    color: #23b8ff;
+}
+.userinfo-left li a:active{
+    border-left-color: #23b8ff;
+}
+/* 清除浮点 */
+.clearfix:before,.clearfix:after{
+    content: "";
+    display: table;
+}
+.clearfix:after{
+    clear: both;
+}
+.footer{
+    margin: 0 auto;
+    margin-top: 15px;
+
+    height: 200px;
+    background-color: #222222;
 }
