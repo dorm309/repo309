@@ -1,6 +1,6 @@
 *{
     margin: 0 auto;
-    padding: auto;
+    padding: 0;/* 原为auto */
 }
 a{
     text-decoration: none;
@@ -20,16 +20,23 @@ a:visited {
 /*鼠标划过(停留)的链接*/
 a:hover {
     text-decoration: none;
+    
 }
 /* 正在点击的链接*/
 a:active {
     text-decoration: none;
 }
+a:focus{
+    outline-offset: 0px;
+}
+
 li{
     list-style:none;
 }
 .w{
     width: 1100px;
+
+
     margin: auto;
     background-color: #f7f7f7;
     /* height: 300px; */
@@ -129,8 +136,8 @@ li{
     /* background-color: blue; */
 }
 .regist{
-    position:absolute;
-    top: 190px;
+    position:relative;
+    top: 110px;
     right: 50%;
     /* margin-left: 215px; */
     margin-right:-388px;
@@ -173,22 +180,29 @@ li{
     text-indent: 20px;
     line-height: 45px;
     font-size: 14px;
-    border-left: 3px solid transparent;
+    /* border-left: 3px solid transparent; */
 }
 .userinfo-left li a:hover{
     background-color: #f7f7f7;
     color: #23b8ff;
 }
-.userinfo-left li a:active{
+/* .userinfo-left li a:active{
     border-left-color: #23b8ff;
-}
+} */
+.pactive{
+    border-left-color: #23b8ff;
+    background-color: #f7f7f7;
+    /* border-left-color: #23b8ff; */
+    border-left: 5px solid #23b8ff ;
+    color: #23b8ff;
+} 
 /* 清除浮点 */
-.clearfix:before,.clearfix:after{
-    content: "";
-    display: table;
-}
 .clearfix:after{
+    content: "";
+    display: block;
+    height: 0;
     clear: both;
+    visibility: hidden;
 }
 .footer{
     margin: 0 auto;
@@ -196,4 +210,145 @@ li{
 
     height: 200px;
     background-color: #222222;
+}
+
+
+/* 主页部分 */
+.index-w{
+    width: 1200px;
+    margin: auto;
+}
+.index-header{
+        height: 42px;
+        /* background-color: rgb(160, 147, 147); */
+        margin: 30px auto;
+}
+.index-logo{
+    float: left;
+    margin-top: -10px;
+    width: 198px;
+    height: 60px;
+    background-image: url(../image/index-logo.png) ; 
+    background-size: 100%; 
+}
+.index-nav{
+    
+        /* border:1px solid #050505; */
+        float: left;
+        /* margin-left: 60px; */
+}
+.index-nav ul li{
+    float: left;
+}
+.index-nav ul li a{
+    display: block;
+    height: 42px;
+    margin: 0 10px;
+    padding: 0 10px;   /*设置各个导航间的间距 */
+    line-height: 42px;
+    font-size: 18px;
+    color: #050505;
+}
+
+.search{
+    float: left;
+    height: 42px;
+    width: 412px;
+    /* background-color:red; */
+    margin-left: 50px;
+}
+.search input{
+    float: left;
+    width: 345px;
+    height: 40px;
+    border:1px solid #00a4ff;
+    color: #bfbfbf;
+    font-size: 14px;
+    padding:0 0 0 15px; /*盒子设置了宽度，会撑大盒子*/
+    
+
+}
+.search button{
+    float:left;  /*两个都是行内块元素，并列时会有空隙，设置浮动清除空隙*/
+    width: 50px;
+    height: 42px;
+    /* background-color: blue; */
+    background: url(../image/fa-search.png);
+    border:none;
+}
+
+.box{
+    margin-top:30px;
+
+}
+.box .bhd{
+    height: 60px;
+}
+.box .bhd h3{
+    float: left;
+    font-size: 20px;
+
+}
+.box .bhd a{
+    margin-top: 10px;
+    float: right;
+    font-size: 12px;
+    color: #bfbfbf;
+}
+.box .bbd ul{
+    width: 1225px;
+}
+.box .bbd ul li{
+    position: relative;
+    z-index: 1;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    float: left;
+    height: 270px;
+    width: 228px;
+    background-color: #ffff;  
+}
+.box .bbd ul li:hover{
+    z-index: 2;
+    box-shadow: 0 15px 30px rgb(0 0 0 / 10%);
+    transform: translate3d(0,-2px,0);
+}
+.box .bbd ul li> img{
+    /* width: 100%; */
+    width: 228px;
+
+    overflow: hidden;
+   
+}
+
+.box .bbd ul li  a .price{
+    text-align: center;
+    color: #ff6700;
+
+}
+.box .bbd ul li  a .title{
+    margin: 20px auto 5px;
+    font-size: 14px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.box .bbd ul li  a .desc{
+    margin: 0 10px 10px;
+    height: 18px;
+    font-size: 12px;
+    color: #b0b0b0;     
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+/* .box .bbd ul li a .price{
+    margin-left: 20px;
+    font-size: 12px;
+    color: #ff7c2d;
+} */
+.box .bbd ul li .info span{
+    color:#999999;
 }

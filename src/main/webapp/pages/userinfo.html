@@ -20,7 +20,7 @@
         <!-- 左侧导航栏 -->
         <div class="userinfo-left">
           <ul style="list-style: none outside none; margin: 0; padding: 0;">
-            <li><a id="info" href="#">个人信息</a></li>
+            <li><a id="info" class="active" href="#">个人信息</a></li>
             <li><a id="modify" href="#">修改信息</a></li>
           </ul>
         </div>
@@ -75,15 +75,19 @@
      $("#info").click(
          function(){
             console.log("info");
+            $("#modify").removeClass("pactive")
             $(".modify-info").css('display','none')
             $(".info").css('display','block')
-
+            $("#info").addClass("pactive")
+           
          }
      );
      $("#modify").click(function(){
          console.log("modify");
+        $("#info").removeClass("pactive")
         $(".info").css('display','none')
         $(".modify-info").css('display','block')
+        $("#modify").addClass("pactive")
      });
      //验证密码
      function verify(){
