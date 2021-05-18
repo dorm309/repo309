@@ -323,7 +323,7 @@ li{
 
 .box .bbd ul li  a .price{
     text-align: center;
-    color: #ff6700;
+    color: #1fdf3f;
 
 }
 .box .bbd ul li  a .title{
@@ -351,4 +351,53 @@ li{
 } */
 .box .bbd ul li .info span{
     color:#999999;
+}
+
+/* 详情页 */
+.item-box{
+    margin-top: 30px;
+}
+.item-w{
+    width: 1200px;
+    margin: auto;
+
+}
+
+/* .review{
+    text-align: center;
+} */
+
+.review .pic-left{
+    float: left;
+    height: 560px;
+    width: 560px;
+}
+.review .info{
+    /* border: #00a4ff 1px solid; */
+    /* float:left; */
+    float: right;
+    /* position: relative; */
+    left:560px;
+    width: 600px;
+    margin-left: 25px;
+}
+.review .info .title{
+    
+    /* margin: 30px auto auto 40px; */
+    
+}
+.review .info >.desc,.price .user{
+  padding: 20px;
+}
+.review .info .user{
+    margin-top: 20px;
+
+}
+.review .info .price{
+    font-size: 24px;
+    color: #1fdf3f;
+}
+.review .info .want{
+    margin-top: 50px;
+    margin-left: 475px;
 }
