@@ -9,66 +9,70 @@
     <link rel="stylesheet" href="../css/css.css">
 
 </head>
-<body >
-  <!-- 顶部导航栏 -->
-    <div class="regist-nav">
-        <div class="regist-layout">
-            <span ><a href="login.html" style="line-height: 35px;">返回登录</a></span>
-        </div>
-    </div>
-  <!-- 主页面 -->
+<body>
+<!-- 顶部导航栏 -->
+<div class="regist-nav">
     <div class="regist-layout">
-        <div class="header">
-            <div class="logo">
-            </div>
-            <div class="regist-logo">用户注册</div>
+        <span><a href="login.html" style="line-height: 35px;">返回登录</a></span>
+    </div>
+</div>
+<!-- 主页面 -->
+<div class="regist-layout">
+    <div class="header">
+        <div class="logo">
         </div>
-        <div class="regist">
-            <form action="/pages/register" method="post" class="form-horizontal" style="padding-right:145px;padding-left: 145px;">
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">账号</label>
-                  <div class="col-sm-10">
-                    <input type="text" name="userName" class="form-control" id="inputEmail3" style="width: 300px;" placeholder="请输入账号">
-                  </div>
+        <div class="regist-logo">用户注册</div>
+    </div>
+    <div class="regist">
+        <form action="register" method="post" class="form-horizontal" style="padding-right:145px;padding-left: 145px;">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">账号</label>
+                <div class="col-sm-10">
+                    <input type="text" name="userName" class="form-control" id="inputEmail3" style="width: 300px;"
+                           placeholder="请输入账号">
                 </div>
-                <div class="form-group" style="margin-top: 20px;">
-                  <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
-                  <div class="col-sm-10">
-                    <input type="password" name="password" class="form-control" id="inputPassword3" style="width: 300px;" placeholder="请输入密码">
-                  </div>
+            </div>
+            <div class="form-group" style="margin-top: 20px;">
+                <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+                <div class="col-sm-10">
+                    <input type="password" name="password" class="form-control" id="inputPassword3"
+                           style="width: 300px;" placeholder="请输入密码">
                 </div>
-                <div class="form-group" style="margin-top: 20px;">
-                    <label for="inputPassword4" class="col-sm-2 control-label">确认密码</label>
-                    <div class="col-sm-10">
-                      <input type="password" class="form-control" id="inputPassword4" style="width: 300px; "placeholder="请再次输入密码">
-                    </div>
-                  </div>
-                <div class="form-group">
-                  <div class="col-sm-offset-2 col-sm-10 ">
+            </div>
+            <div class="form-group" style="margin-top: 20px;">
+                <label for="inputPassword4" class="col-sm-2 control-label">确认密码</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="inputPassword4" style="width: 300px; "
+                           placeholder="请再次输入密码">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10 ">
                     <button type="submit" class="btn btn-default regist-btn">注册</button>
-                  </div>
                 </div>
-              </form>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 底部 -->
+<div class="footer">
+    <div class="w">
+        <div class="copyright" style="float: left; margin-top: 15px; font-size: 12px ;color: #7b7b7b;">
+            <h4>关于我们</h4> 西柚有余倾力打造的校园二手信息共享台。<br/>
+            师生将商品上传到 该 平台，用户可以选择自己需要的产品，平台免费使用。
+        </div>
+        <div class="links" style="float: right;margin-top: 15px; color: #7b7b7b; font-size: 12px;">
+            <h4>友情链接</h4>
+            <a href="#">西南石油大学</a>
+            <a href="#">学工系统</a>
+            <a href="#">四川省教育厅</a>
+            <a href="#">教务处</a>
+
         </div>
     </div>
-    
-<!-- 底部 -->
-  <div class="footer">
-      <div class="w">
-          <div class="copyright" style="float: left; margin-top: 15px; font-size: 12px ;color: #7b7b7b;">
-              <h4>关于我们</h4> 西柚有余倾力打造的校园二手信息共享台。<br/>
-          师生将商品上传到 该 平台，用户可以选择自己需要的产品，平台免费使用。</div>
-          <div class="links" style="float: right;margin-top: 15px; color: #7b7b7b; font-size: 12px;">
-              <h4>友情链接</h4>
-              <a href="#">西南石油大学</a>
-              <a href="#">学工系统</a>
-              <a href="#">四川省教育厅</a>
-              <a href="#">教务处</a>
-            
-          </div>
-      </div>
-  </div>
+</div>
 
-    
+
 </body>
 </html>
