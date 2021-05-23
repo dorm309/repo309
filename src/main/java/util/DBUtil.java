@@ -9,11 +9,18 @@ public class DBUtil {
         /*
         Connect to MySQL server
          */
-        String uri =
-                "jdbc:mysql://localhost:3306/mess?user=root&password=123456&useSSL=true&characterEncoding=utf-8";
+        String ip = "127.0.0.1";
+        int port = 3306;
+        String database = "mess";
+        String encoding = "UTF-8";
+        String loginName = "root";
+        String password = "admin";
+
+        String url = String.format("jdbc:mysql://%s:%d/%s?user=%s&password=%s&useSSL=true&characterEncoding=%s", ip, port, database, loginName, password, encoding);
+
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection(uri);
+            con = DriverManager.getConnection(url);
             System.out.println("数据库连接成功!");
         } catch (Exception e) {
             e.printStackTrace();
