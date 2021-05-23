@@ -6,6 +6,7 @@ public interface DBOperation<T> {
     /*
         CRUD Operations
          */
+    //1
     boolean create(T t);
     List<T> retrieve();
     boolean update(T t);
