@@ -27,8 +27,9 @@
         </div>
         <!-- 中间内容 -->
         <div style=" float:left ;margin-left:15px; ">
-        <h2 >个人中心</h2>
+            <h2 >个人中心</h2>
         </div>
+
         <div class="main" style="background-color: #fff;  border-radius: 8px;
         box-shadow: 0px 1px 2px rgba(var(--dsw-base-rgb), 0.1);width:785px; 
         float: right; margin-top: 15px; margin-left: 15px;">
@@ -44,15 +45,49 @@
                 <!-- 验证不通过则阻止向服务器提交数据 -->
                 <form action="#" onsubmit="return verify()">  
                     <h2>输入新密码</h2>
-                    <div class="name-detail" style=" border-bottom:1px solid #ddd;;padding-bottom: 20px;font-size: 20px;"><input class="password1" type="password"></div>
+                    <div class="name-detail" style=" border-bottom:1px solid #ddd;;padding-bottom: 20px;font-size: 20px;">
+                        <input class="password1" type="password">
+                    </div>
                     <h2>再次输入</h2>
-                    <div class="password-detail" style=" border-bottom:1px solid #ddd;;padding-bottom: 20px;font-size: 20px;"><input class="password2" type="password"></div>
-                    <div class="submit" style=" padding-top: 20px;font-size: 20px;"><input class="btn btn-default" type="submit" value="提交" onclick="verify()" ></div>
+                    <div class="password-detail" style=" border-bottom:1px solid #ddd;;padding-bottom: 20px;font-size: 20px;">
+                        <input class="password2" type="password">
+                    </div>
+                    <div class="submit" style=" padding-top: 20px;font-size: 20px;">
+                        <input class="btn btn-default" type="submit" value="提交">
+                    </div>
                 </form>
             </div>
+
         <!-- 展示我发布的商品 -->
-        
+        <div class="my-product" style="padding: 20px;display: none ; ">
+           <table class="tb">
+               <thead>
+                   <tr>
+                       <th style="width: 60%;">商品名</th>
+                       <th style="width: 20%;">价格</th>
+                       <th style="width: 20%;">操作</th>
+
+                   </tr>
+               </thead>
+               <tbody>
+                   <tr>
+                       <td><h4 class="title">全新女装</h4></td>
+                       <td><span class="num">99元</span></td>
+                       <td><span class="linkdel">删除</span></td>   <!--点击会触发删除事件，具体行为见底部js函数-->
+                   </tr>
+                   <tr>
+                    <td><h4 class="title">全新女装</h4></td>
+                    <td><span class="num">99元</span></td>
+                    <td><span class="linkdel">删除</span></td>   <!--点击会触发删除事件，具体行为见底部js函数-->
+                </tr>
+                
+               </tbody>
+
+           </table>
+           
         </div>
+        
+    </div>
 <!-- 底部 -->
     </div>
     <div class="footer">
@@ -77,31 +112,63 @@
     //页面切换
      $("#info").click(
          function(){
+             
             console.log("info");
             $("#modify").removeClass("pactive")
+            $("#my-product").removeClass("pactive")
             $(".modify-info").css('display','none')
+            $(".my-product").css('display','none')
             $(".info").css('display','block')
             $("#info").addClass("pactive")
+        //向服务器发送ajax请求获取该页数据！！
+            
            
          }
      );
      $("#modify").click(function(){
          console.log("modify");
         $("#info").removeClass("pactive")
+        $("#my-product").removeClass("pactive")
         $(".info").css('display','none')
+        $(".my-product").css('display','none')
         $(".modify-info").css('display','block')
         $("#modify").addClass("pactive")
+    //向服务器发送ajax请求获取该页数据！！
+
      });
-     //验证密码
+     $("#my-product").click(function(){
+        console.log("my-product");
+        $("#info").removeClass("pactive")
+        $("#modify").removeClass("pactive")
+        $(".info").css('display','none')
+        $(".modify-info").css('display','none')
+        $(".my-product").css('display','block')
+        $("#my-product").addClass("pactive")
+     //向服务器发送ajax请求获取该页数据！！
+
+     })
+
+    //  //验证密码
      function verify(){
         var a= $(".password1").val();
+        //console.log(a=='')
         var b=$(".password2").val();
-        if(a!=b ||(a=' ')){
-            alert("两次输入不同！")
-            return false;
+        //console.log(b)
+        if(a=='' ||a!=b){
+            alert("输入有误！")
+           return false;
         }
-
-
      }
+
+    //  删除发布事件
+    $(".linkdel").click(function(){
+        console.log("删除该商品")
+        //获取删除商品需要的主键
+       
+        
+        //发送ajax请求
+    });
+
+
 </script>
 </html>

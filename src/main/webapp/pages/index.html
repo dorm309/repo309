@@ -23,13 +23,14 @@
         <div class="index-nav">
             <ul>
                 <li><a href="javascript:add()">发布</a></li>
-                <li><a href="javascript:fun()">收藏夹</a></li>
+                <li><a href="wishlist.html">收藏夹</a></li>
                 <li><a href="#">待定功能</a></li>
             </ul>
         </div>
         <div class="search">
-            <input type="text"value="输入关键词">
-            <button type="button"></button>
+            <input type="text"placeholder ="输入关键词" id="keyword"> 
+            <!-- 点击搜索按钮触发事件，详细内容见底部js函数 -->
+            <button type="button" id="search-btn"></button>  
         </div>
         <div class="user" style="float: right;margin-right: 5px; height: 42px;font-size: 18px; ">
             <a style="display: block ;line-height: 42px;" href="userinfo.html">个人中心</a>
@@ -186,6 +187,27 @@
     </div>
 
    <script>
+      // 搜索事件
+      $("#search-btn").click(function(){
+        var keyword=$("#keyword").val();
+        console.log(keyword)
+      //向服务器发送请求并携带参数keyword
+//       $.ajax({
+//                 //请求路径(服务器提供)
+//                 url: "ajaxServ1et" ,
+//                 type:"POST" , //请求方式.
+// //请求参数
+//                 //data: "username=jack&age=23" ,
+//                 data: { "username" :"jack", "age" :23},//JSON形式
+// //响应成功后的回调函数
+//                 success:function (data){
+//                 alert(data);
+//                 }
+//             });
+
+    })
+
+
        function add(){
           var that = this; 
           
@@ -197,15 +219,12 @@
             ,shade: 0
             ,maxmin: true
             ,offset:  'auto' //居中
-            ,content: $('.content')
-            
-            ,btn: ['确认发布', '取消'] //只是为了演示
+            ,content: $('.content') 
+            ,btn:  '取消' //
             ,yes: function(){
-              alert('提交数据')
-            }
-            ,btn2: function(){
               layer.closeAll();
             }
+
           });
         //   $(".content").css('display',"block")
         }
@@ -254,6 +273,7 @@
         </div>
       </form>
 </div>
+
 
    
   <script>

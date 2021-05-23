@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>商品详情</title>
+<script type="text/javascript" src="../plugins/jQuery/jquery-2.2.3.min.js"> </script>
     <link rel="stylesheet" href="../plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/css.css">
 </head>
@@ -25,9 +26,9 @@
                 <div class="price"><span class="num">99</span><span>元</span></div>
                 <div class="user">  <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> 联系方式：<span id="phonenum">110</span></div>
                 <hr>
-                <form class="want"  action="#">
-                    
-                      <button type="button" class="btn btn-success ">
+                <form class="want"  action="#">   
+                    <!-- 点击按钮会触发收藏事件，具体见底部js函数 -->
+                      <button type="button" class="btn btn-success" id="want">
                         <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 收藏
                       </button>
                 </form>
@@ -50,5 +51,13 @@
         </div>
     </div>
 </div>
+<script>
+
+    //收藏事件
+    $("#want").click(function(){
+        console.log("收藏事件触发了")
+        //需要获取商品主键并向服务器发起请求
+    })
+</script>.
 </body>
 </html>
