@@ -6,9 +6,8 @@ public interface DBOperation<T> {
     /*
         CRUD Operations
          */
-    //1
     boolean create(T t);
-    List<T> retrieve();
+    List<T> retrieve(int id);
     boolean update(T t);
     boolean delete(int id);
 }

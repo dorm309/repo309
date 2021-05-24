@@ -1,4 +1,5 @@
 package dao;
+
 import entity.User;
 import util.DBUtil;
 
@@ -10,7 +11,7 @@ import java.util.List;
 public class UserDAO implements DBOperation<User> {
 
     @Override
-    public boolean create(User user){
+    public boolean create(User user) {
         String sql = "insert into user values(null,?,?,?,?,?)";
         try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -34,11 +35,30 @@ public class UserDAO implements DBOperation<User> {
         }
     }
 
-
-
     @Override
-    public List retrieve() {
-        return null;
+    public List<User> retrieve(int id) {
+        String sql = "SELECT * FROM user WHERE uid = ?";
+        List<User> list = new ArrayList<User>();
+        try {
+            PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                User user = new User();
+                user.setUid(rs.getInt(1));
+                user.setUsername(rs.getString(2));
+                user.setPassword(rs.getString(3));
+                user.setStu_num(rs.getString(4));
+                user.setQq(rs.getString(5));
+                user.setPhone(rs.getString(6));
+                list.add(user);
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
     @Override
@@ -46,7 +66,7 @@ public class UserDAO implements DBOperation<User> {
 
         String sql = "update user set username= ?, password=?, stu_num=?, qq=?, phone=? where uid = ?";
 
-        try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
+        try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getPassword());
@@ -57,7 +77,7 @@ public class UserDAO implements DBOperation<User> {
 
             ps.execute();
             return true;
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
@@ -68,14 +88,13 @@ public class UserDAO implements DBOperation<User> {
     @Override
     public boolean delete(int id) {
 
-        try (Statement s = DBUtil.getCon().createStatement()){
+        try (Statement s = DBUtil.getCon().createStatement()) {
 
             String sql = "delete from user where uid = " + id;
 
             s.execute(sql);
             return true;
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
