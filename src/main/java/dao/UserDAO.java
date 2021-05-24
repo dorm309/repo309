@@ -84,7 +84,6 @@ public class UserDAO implements DBOperation<User> {
 
     }
 
-
     @Override
     public boolean delete(int id) {
 
@@ -99,4 +98,65 @@ public class UserDAO implements DBOperation<User> {
             return false;
         }
     }
+    //查询用户名是否存在
+    public boolean isExist(String name) {
+        User user = get(name);
+        if(user == null){
+            return false;
+        }
+        else {
+            return true;
+        }
+
+    }
+    //根据用户名获取对象
+    public User get(String name) {
+        User bean = null;
+
+        String sql = "select * from user where name = ?";
+        try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql)) {
+            ps.setString(1, name);
+            ResultSet rs =ps.executeQuery();
+
+            if (rs.next()) {
+                bean = new User();
+                int id = rs.getInt("id");
+                bean.setUsername(name);
+                String password = rs.getString("password");
+                bean.setPassword(password);
+                bean.setUid(id);
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return bean;
+    }
+    //根据用户名与密码获取对象
+    public User get(String name, String password) {
+        User bean = null;
+
+        String sql = "select * from user where name = ? and password=?";
+        try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql)) {
+            ps.setString(1, name);
+            ps.setString(2, password);
+            ResultSet rs =ps.executeQuery();
+
+            if (rs.next()) {
+                bean = new User();
+                int id = rs.getInt("id");
+                bean.setUsername(name);
+                bean.setPassword(password);
+                bean.setUid(id);
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return bean;
+    }
+
 }
+

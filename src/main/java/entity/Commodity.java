@@ -3,34 +3,30 @@ package entity;
 import util.CommodityCategory;
 
 import java.awt.*;
+import java.sql.Date;
+import java.util.List;
 
 public class Commodity {
     /*
     Definitions：商品id 商品名称 商品图片 商品描述 商品种类
      */
     private int cid;
-    private String commodity;
-    private Image image;
+    private String name;
+    private Date createDate;
+    private float price;
+    private List<CommodityImages> commodityImages;
     private String description;
     private CommodityCategory category;
 
-    /*
-    Constructors
-     */
-    public Commodity() {
-    }
-
-    public Commodity(int cid, String commodity, Image image, String description, CommodityCategory category) {
+    public Commodity(int cid, String name, Date createDate, float price, List<CommodityImages> commodityImages, String description, CommodityCategory category) {
         this.cid = cid;
-        this.commodity = commodity;
-        this.image = image;
+        this.name = name;
+        this.createDate = createDate;
+        this.price = price;
+        this.commodityImages = commodityImages;
         this.description = description;
         this.category = category;
     }
-
-    /*
-    Getters and Setters
-     */
 
     public int getCid() {
         return cid;
@@ -40,20 +36,36 @@ public class Commodity {
         this.cid = cid;
     }
 
-    public String getCommodity() {
-        return commodity;
+    public String getName() {
+        return name;
     }
 
-    public void setCommodity(String commodity) {
-        this.commodity = commodity;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Image getImage() {
-        return image;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setImage(Image image) {
-        this.image = image;
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public List<CommodityImages> getCommodityImages() {
+        return commodityImages;
+    }
+
+    public void setCommodityImages(List<CommodityImages> commodityImages) {
+        this.commodityImages = commodityImages;
     }
 
     public String getDescription() {
