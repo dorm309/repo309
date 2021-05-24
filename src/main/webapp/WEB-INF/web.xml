@@ -14,10 +14,10 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
-        <url-pattern>/pages/register</url-pattern>
+        <url-pattern>/jsp/register.servlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/pages/login</url-pattern>
+        <url-pattern>/jsp/login.servlet</url-pattern>
     </servlet-mapping>
 </web-app>
