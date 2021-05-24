@@ -43,12 +43,41 @@ public class UserDAO implements DBOperation<User> {
 
     @Override
     public boolean update(User user) {
-        return false;
+
+        String sql = "update user set username= ?, password=?, stu_num=?, qq=?, phone=? where uid = ?";
+
+        try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
+
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getPassword());
+            ps.setString(3, user.getStu_num());
+            ps.setString(4, user.getQq());
+            ps.setString(5, user.getPhone());
+            ps.setInt(6, user.getUid());
+
+            ps.execute();
+            return true;
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
     }
 
 
     @Override
     public boolean delete(int id) {
-        return false;
+
+        try (Statement s = DBUtil.getCon().createStatement()){
+
+            String sql = "delete from user where uid = " + id;
+
+            s.execute(sql);
+            return true;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
