@@ -25,13 +25,15 @@ public class LoginServlet extends HttpServlet {
         String password_dao = user.getPassword();
 
         response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=utf-8");
+
         PrintWriter out = response.getWriter();
         if ((userName.equals(userName_dao) && (password.equals(password_dao))))
-            out.write("<script>alert('successfully login'); window.location='index.jsp' </script>");
+            out.write("<script>alert('登录成功'); window.location='index.jsp' </script>");
         else if (userName.equals(userName_dao))
-            out.write("<script>alert('wrong password'); window.location='login.jsp' </script>");
+            out.write("<script>alert('登录名或密码错误'); window.location='login.jsp' </script>");
         else
-            out.write("<script>alert('please register'); window.location='regist.jsp' </script>");
+            out.write("<script>alert('未注册，请先注册'); window.location='regist.jsp' </script>");
         out.flush();
         out.close();
     }
