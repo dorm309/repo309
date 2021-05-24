@@ -3,20 +3,25 @@ package util;
 import java.sql.*;
 
 public class DBUtil {
+    /*
+    Definitions：数据库连接 IP地址 端口 数据库名称 编码 用户名 密码
+     */
     private static Connection con;
+    private String ip = "127.0.0.1";
+    private int port = 3306;
+    private String database = "mess";
+    private String encoding = "UTF-8";
+    private String loginName = "root";
+    private String password = "admin";
 
-    public DBUtil() {
-        /*
-        Connect to MySQL server
+    /*
+    Connect to MySQL server
          */
-        String ip = "127.0.0.1";
-        int port = 3306;
-        String database = "mess";
-        String encoding = "UTF-8";
-        String loginName = "root";
-        String password = "admin";
-
-        String url = String.format("jdbc:mysql://%s:%d/%s?user=%s&password=%s&useSSL=true&characterEncoding=%s", ip, port, database, loginName, password, encoding);
+    public DBUtil() {
+        String url = String.format(
+                "jdbc:mysql://%s:%d/%s?user=%s&password=%s&useSSL=true&characterEncoding=%s",
+                ip, port, database, loginName, password, encoding
+        );
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
