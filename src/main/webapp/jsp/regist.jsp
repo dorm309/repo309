@@ -5,7 +5,8 @@
   Time: 10:07
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"
+         pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +40,7 @@
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">账号</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail3" name="userName" style="width: 300px;"
+                    <input type="text" class="form-control" id="inputEmail3" name="username" style="width: 300px;"
                            placeholder="请输入账号">
                 </div>
             </div>
@@ -92,7 +93,7 @@
         var b = $("#inputPassword4").val();
         // console.log(b)
         if (a == '' || a != b) {
-            alert("输入有误！")
+            alert("两次输入的密码不一致，请重试！")
             return false;
         }
     }

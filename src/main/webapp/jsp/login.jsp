@@ -5,7 +5,8 @@
   Time: 10:04
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"
+         pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +31,8 @@
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">账号</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail3" name="userName" placeholder="请输入账号">
+                    <input type="text" class="form-control" id="inputEmail3" name="username" placeholder="请输入账号"
+                    <%--                           value="${cookie.name.value}"--%>>
                 </div>
             </div>
             <div class="form-group" style="margin-top: 20px;">
@@ -43,7 +45,8 @@
                 <div class="col-sm-offset-2 col-sm-10">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox"> 记住密码
+                            <input type="checkbox" name="rememberMe"
+                            ${empty cookie.rememberMe.value?"":"checked='checked'"}> 记住密码
                         </label>
                     </div>
                 </div>
@@ -80,3 +83,4 @@
 
 </body>
 </html>
+

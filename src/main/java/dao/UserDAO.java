@@ -98,64 +98,61 @@ public class UserDAO implements DBOperation<User> {
             return false;
         }
     }
+
     //查询用户名是否存在
     public boolean isExist(String name) {
         User user = get(name);
-        if(user == null){
+        if (user == null)
             return false;
-        }
-        else {
-            return true;
-        }
 
+        return true;
     }
+
     //根据用户名获取对象
     public User get(String name) {
-        User bean = null;
+        User user = null;
 
-        String sql = "select * from user where name = ?";
-        try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql)) {
+        String sql = "select * from user where username = ?";
+        try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, name);
-            ResultSet rs =ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                bean = new User();
-                int id = rs.getInt("id");
-                bean.setUsername(name);
+                user = new User();
+                int id = rs.getInt("uid");
+                user.setUsername(name);
                 String password = rs.getString("password");
-                bean.setPassword(password);
-                bean.setUid(id);
+                user.setPassword(password);
+                user.setUid(id);
             }
 
         } catch (SQLException e) {
-
             e.printStackTrace();
         }
-        return bean;
+        return user;
     }
+
     //根据用户名与密码获取对象
     public User get(String name, String password) {
-        User bean = null;
+        User user = null;
 
-        String sql = "select * from user where name = ? and password=?";
-        try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql)) {
+        String sql = "select * from user where username = ? and password=?";
+        try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, name);
             ps.setString(2, password);
-            ResultSet rs =ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                bean = new User();
-                int id = rs.getInt("id");
-                bean.setUsername(name);
-                bean.setPassword(password);
-                bean.setUid(id);
+                user = new User();
+                int id = rs.getInt("uid");
+                user.setUsername(name);
+                user.setPassword(password);
+                user.setUid(id);
             }
-
         } catch (SQLException e) {
-
             e.printStackTrace();
         }
-        return bean;
+        return user;
     }
 
 }

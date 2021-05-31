@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Commodity {
     /*
-    Definitions：商品id 商品名称 商品图片 商品描述 商品种类
+    Definitions：商品id 商品名称 创建日期 商品价格 商品图片 商品描述 商品种类
      */
     private int cid;
     private String name;
@@ -18,8 +18,7 @@ public class Commodity {
     private String description;
     private CommodityCategory category;
 
-    public Commodity(int cid, String name, Date createDate, float price, List<CommodityImages> commodityImages, String description, CommodityCategory category) {
-        this.cid = cid;
+    public Commodity(String name, Date createDate, float price, List<CommodityImages> commodityImages, String description, CommodityCategory category) {
         this.name = name;
         this.createDate = createDate;
         this.price = price;
