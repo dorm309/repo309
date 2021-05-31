@@ -9,4 +9,3 @@
 %>
 </body>
 </html>
-完成登录和注册servlet，
