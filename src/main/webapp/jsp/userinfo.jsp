@@ -1,4 +1,4 @@
-<%--
+<%@ page import="entity.User" %><%--
   Created by IntelliJ IDEA.
   User: Vincent
   Date: 2021/5/24
@@ -44,12 +44,16 @@
         float: right; margin-top: 15px; margin-left: 15px;">
         <!-- 展示个人信息 -->
         <div class="info" style="padding: 20px;">
+            <%
+                User user = (User) session.getAttribute("loginUser");
+            %>
             <h2>账号</h2>
-            <div class="name-detail" style=" border-bottom:1px solid #ddd;;padding-bottom: 20px;font-size: 20px;"><span>三网通</span>
+            <div class="name-detail" style=" border-bottom:1px solid #ddd;;padding-bottom: 20px;font-size: 20px;">
+                <span><%=user.getUsername()%></span>
             </div>
             <h2>密码</h2>
             <div class="password-detail" style=" border-bottom:1px solid #ddd;;padding-bottom: 20px;font-size: 20px;">
-                <span>123456</span></div>
+                <span><%=user.getPassword()%></span></div>
         </div>
         <!-- 展示修改密码 -->
         <div class="modify-info" style="padding: 20px;display: none; ">
