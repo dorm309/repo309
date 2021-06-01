@@ -1,9 +1,6 @@
 package entity;
 
-import util.CommodityCategory;
-
-import java.awt.*;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 public class Commodity {
@@ -16,9 +13,13 @@ public class Commodity {
     private float price;
     private List<CommodityImages> commodityImages;
     private String description;
-    private CommodityCategory category;
+    private Category category;
 
-    public Commodity(String name, Date createDate, float price, List<CommodityImages> commodityImages, String description, CommodityCategory category) {
+
+    public Commodity(){
+
+    }
+    public Commodity(String name, Date createDate, float price, List<CommodityImages> commodityImages, String description, Category category) {
         this.name = name;
         this.createDate = createDate;
         this.price = price;
@@ -75,11 +76,11 @@ public class Commodity {
         this.description = description;
     }
 
-    public CommodityCategory getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(CommodityCategory category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 }

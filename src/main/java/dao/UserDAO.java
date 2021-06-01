@@ -36,12 +36,11 @@ public class UserDAO implements DBOperation<User> {
     }
 
     @Override
-    public List<User> retrieve(int id) {
-        String sql = "SELECT * FROM user WHERE uid = ?";
+    public List<User> retrieve() {
+        String sql = "SELECT * FROM user";
         List<User> list = new ArrayList<User>();
         try {
             PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 User user = new User();
@@ -136,7 +135,7 @@ public class UserDAO implements DBOperation<User> {
     public User get(String name, String password) {
         User user = null;
 
-        String sql = "select * from user where username = ? and password=?";
+        String sql = "select * from user where name = ? and password=?";
         try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, name);
             ps.setString(2, password);
@@ -144,7 +143,7 @@ public class UserDAO implements DBOperation<User> {
 
             if (rs.next()) {
                 user = new User();
-                int id = rs.getInt("uid");
+                int id = rs.getInt("id");
                 user.setUsername(name);
                 user.setPassword(password);
                 user.setUid(id);
