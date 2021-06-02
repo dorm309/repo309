@@ -9,7 +9,7 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-/*
+/**
  * 处理登录逻辑
  */
 @WebServlet("/LoginServlet")
@@ -65,7 +65,7 @@ public class LoginServlet extends HttpServlet {
 
             //配置登录用户个人信息
             HttpSession session = request.getSession();
-            session.setAttribute("loginUser", new User(username, password));
+            session.setAttribute("loginUser", user);
 
             out.write("<script>alert('登录成功'); window.location='index.jsp' </script>");
         } else if (username.equals(username_dao))
@@ -75,5 +75,10 @@ public class LoginServlet extends HttpServlet {
 
         out.flush();
         out.close();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
     }
 }

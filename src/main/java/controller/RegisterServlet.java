@@ -9,7 +9,7 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-/*
+/**
  * 处理注册逻辑
  */
 @WebServlet("/RegisterServlet")
@@ -31,5 +31,10 @@ public class RegisterServlet extends HttpServlet {
 
         out.flush();
         out.close();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
     }
 }

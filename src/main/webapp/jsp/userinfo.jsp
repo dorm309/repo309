@@ -58,10 +58,10 @@
         <!-- 展示修改密码 -->
         <div class="modify-info" style="padding: 20px;display: none; ">
             <!-- 验证不通过则阻止向服务器提交数据 -->
-            <form action="#" onsubmit="return verify()">
+            <form action="updatePassword.servlet" method="post" onsubmit="return verify()">
                 <h2>输入新密码</h2>
                 <div class="name-detail" style=" border-bottom:1px solid #ddd;;padding-bottom: 20px;font-size: 20px;">
-                    <input class="password1" type="password">
+                    <input class="password1" name="newPassword" type="password">
                 </div>
                 <h2>再次输入</h2>
                 <div class="password-detail"
