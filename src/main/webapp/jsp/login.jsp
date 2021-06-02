@@ -9,6 +9,21 @@
          pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
+<%
+    //设置记住密码
+    Cookie[] cookies = request.getCookies();
+    Cookie remember_username = null;
+    Cookie remember_password = null;
+
+    if (cookies != null && cookies.length > 0) {
+        for (Cookie c : cookies) {
+            if (c.getName().equals("rememberUsername"))
+                remember_username = c;
+            if (c.getName().equals("rememberPassword"))
+                remember_password = c;
+        }
+    }
+%>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,21 +47,22 @@
                 <label for="inputEmail3" class="col-sm-2 control-label">账号</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="inputEmail3" name="username" placeholder="请输入账号"
-                    <%--                           value="${cookie.name.value}"--%>>
+                           value="<%=remember_username==null?"":remember_username.getValue()%>">
                 </div>
             </div>
             <div class="form-group" style="margin-top: 20px;">
                 <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword3" name="password" placeholder="请输入密码">
+                    <input type="password" class="form-control" id="inputPassword3" name="password" placeholder="请输入密码"
+                           value="<%=remember_password==null?"":remember_password.getValue()%>">
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="rememberMe"
-                            ${empty cookie.rememberMe.value?"":"checked='checked'"}> 记住密码
+                            <input type="checkbox" name="remember" value="yes"
+                                <%=cookies==null?"":"checked"%>> 记住密码
                         </label>
                     </div>
                 </div>
