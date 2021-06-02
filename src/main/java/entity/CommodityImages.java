@@ -1,9 +1,15 @@
 package entity;
 
 public class CommodityImages {
+    /*
+    Definitions：（所属）商品对象 图片id
+     */
     private Commodity commodity;
     private int id;
 
+    /*
+    Getters and Setters
+     */
     public int getId() {
         return id;
     }
@@ -18,12 +24,5 @@ public class CommodityImages {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Commodity getProduct() {
-        return commodity;
-    }
-    public void setProduct(Commodity commodity) {
-        this.commodity = commodity;
     }
 }

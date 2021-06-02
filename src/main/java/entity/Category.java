@@ -1,20 +1,18 @@
 package entity;
+
 import java.util.List;
 
 public class Category {
-
+    /*
+    Definitions：种类名 种类id （所属种类）商品列表
+     */
     private String name;
     private int id;
     List<Commodity> commodity;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    /*
+    Getters and Setters
+     */
     public String getName() {
         return name;
     }
@@ -23,9 +21,12 @@ public class Category {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Category [name=" + name + "]";
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public List<Commodity> getCommodity() {
@@ -36,5 +37,11 @@ public class Category {
         this.commodity = commodity;
     }
 
-
+    /*
+    toString()
+     */
+    @Override
+    public String toString() {
+        return "Category [name=" + name + "]";
+    }
 }

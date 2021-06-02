@@ -15,10 +15,13 @@ public class Commodity {
     private String description;
     private Category category;
 
-
-    public Commodity(){
+    /*
+    Constructors
+     */
+    public Commodity() {
 
     }
+
     public Commodity(String name, Date createDate, float price, List<CommodityImages> commodityImages, String description, Category category) {
         this.name = name;
         this.createDate = createDate;
@@ -28,6 +31,9 @@ public class Commodity {
         this.category = category;
     }
 
+    /*
+    Getters and Setters
+     */
     public int getCid() {
         return cid;
     }

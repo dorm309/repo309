@@ -1,4 +1,4 @@
-<%@ page import="entity.User" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Vincent
   Date: 2021/5/24
@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8"
-         pageEncoding="UTF-8" %>
+         pageEncoding="UTF-8" import="entity.User" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人中心</title>
     <link rel="stylesheet" href="../plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/css.css"
+    <link rel="stylesheet" href="../css/css.css">
 </head>
 <body style="background-color: #f7f7f7;">
 <!-- 导航栏 -->
