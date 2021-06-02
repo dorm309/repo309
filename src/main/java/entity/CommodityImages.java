@@ -8,6 +8,14 @@ public class CommodityImages {
         return id;
     }
 
+    public Commodity getCommodity() {
+        return commodity;
+    }
+
+    public void setCommodity(Commodity commodity) {
+        this.commodity = commodity;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
