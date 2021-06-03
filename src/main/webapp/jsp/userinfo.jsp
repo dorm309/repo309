@@ -125,6 +125,44 @@
         </div>
 
     </div>
+  
+  
+  <!-- 展示我购买的商品 -->
+        <div class="my-purchase" style="padding: 20px;display: none; ">
+            <table class="layui-layer-btn1">
+                <thead>
+                <tr>
+                    <th style="width: 60%;">订单名</th>
+                    <th style="width: 20%;">价格</th>
+                    <th style="width: 20%;">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><h4 class="title">自行车</h4></td>
+                    <td><span class="num">300元</span></td>
+                    <td><span class="linkdel">删除</span></td>   <!--点击会触发删除事件，具体行为见底部js函数-->
+                </tr>
+                <tr>
+                    <td><h4 class="title">二手教材</h4></td>
+                    <td><span class="num">10元</span></td>
+                    <td><span class="linkdel">删除</span></td>   <!--点击会触发删除事件，具体行为见底部js函数-->
+                </tr>
+
+                <tr>
+                    <td><h4 class="title">台灯</h4></td>
+                    <td><span class="num">50元</span></td>
+                    <td><span class="linkdel">删除</span></td>   <!--点击会触发删除事件，具体行为见底部js函数-->
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+</div>
+  
     <!-- 底部 -->
 </div>
 <div class="footer">
@@ -158,6 +196,8 @@
             $(".my-product").css('display', 'none')
             $(".info").css('display', 'block')
             $("#info").addClass("pactive")
+            $("#my-purchase").removeClass("pactive")
+            $(".my-purchase").css('display', 'none')
             //向服务器发送ajax请求获取该页数据！！
 
         }
@@ -170,6 +210,8 @@
         $(".my-product").css('display', 'none')
         $(".modify-info").css('display', 'block')
         $("#modify").addClass("pactive")
+        $("#my-purchase").removeClass("pactive")
+        $(".my-purchase").css('display', 'none')
         //向服务器发送ajax请求获取该页数据！！
 
     });
@@ -181,9 +223,30 @@
         $(".modify-info").css('display', 'none')
         $(".my-product").css('display', 'block')
         $("#my-product").addClass("pactive")
+        $("#my-purchase").removeClass("pactive")
+        $(".my-purchase").css('display', 'none')
         //向服务器发送ajax请求获取该页数据！！
 
-    })
+    });
+    $("#my-purchase").click(
+        function () {
+            console.log("my-purchase");
+            $("#info").removeClass("pactive")
+            $("#modify").removeClass("pactive")
+            $(".info").css('display', 'none')
+            $(".modify-info").css('display', 'none')
+            $(".my-product").css('display', 'none')
+            $("#my-product").removeClass("pactive")
+            $("#my-purchase").addClass("pactive")
+            $(".my-purchase").css('display', 'block')
+        //向服务器发送ajax请求获取该页数据！！
+
+    });
+  
+    
+  
+  
+  
 
     //  //验证密码
     function verify() {
