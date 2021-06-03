@@ -20,10 +20,4 @@ public class CommodityImages {
         this.id = id;
     }
 
-    public Commodity getProduct() {
-        return commodity;
-    }
-    public void setProduct(Commodity commodity) {
-        this.commodity = commodity;
-    }
 }
