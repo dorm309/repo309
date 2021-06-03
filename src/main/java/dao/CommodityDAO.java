@@ -1,7 +1,6 @@
 package dao;
 
 import entity.Commodity;
-import entity.User;
 import util.DBUtil;
 import util.DateUtil;
 
@@ -14,15 +13,16 @@ public class CommodityDAO implements DBOperation<Commodity> {
 
     @Override
     public boolean create(Commodity commodity) {
-        String sql = "insert into commodity values(null,?,?,?,?,?,?)";
+        String sql = "insert into commodity values(null,?,?,?,?,?,?,?)";
         try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-            ps.setInt(1,commodity.getUid());
+            ps.setInt(1, commodity.getUid());
             ps.setString(2, commodity.getName());
-            ps.setTimestamp(3, DateUtil.d2t(commodity.getCreateDate()));
-            ps.setFloat(4, commodity.getPrice());
-            ps.setString(5, commodity.getDescription());
-            ps.setInt(6, commodity.getCategory().getId());
+            ps.setString(3, commodity.getContact());
+            ps.setTimestamp(4, DateUtil.d2t(commodity.getCreateDate()));
+            ps.setFloat(5, commodity.getPrice());
+            ps.setString(6, commodity.getDescription());
+            ps.setInt(7, commodity.getCategory().getId());
             ps.execute();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -40,7 +40,8 @@ public class CommodityDAO implements DBOperation<Commodity> {
     @Override
     public List<Commodity> retrieve() {
         String sql = "SELECT * FROM commodity";
-        List<Commodity> list = new ArrayList<Commodity>();
+        List<Commodity> list = new ArrayList<>();
+
         try {
             PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = ps.executeQuery();
@@ -49,37 +50,37 @@ public class CommodityDAO implements DBOperation<Commodity> {
                 Commodity commodity = new Commodity();
                 commodity.setCid(rs.getInt("cid"));
                 commodity.setUid(rs.getInt("uid"));
-                commodity.setCreateDate(DateUtil.t2d(rs.getTimestamp("date")));
                 commodity.setName(rs.getString("name"));
+                commodity.setContact(rs.getString("contact"));
+                commodity.setCreateDate(DateUtil.t2d(rs.getTimestamp("date")));
                 commodity.setPrice(rs.getFloat("price"));
                 commodity.setDescription(rs.getString("description"));
                 commodity.setCategory(new CategoryDAO().get(rs.getInt("category")));
-                list.add(commodity);
 
+                list.add(commodity);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        for(Commodity c:list)
-        {
-            System.out.println(c);
-        }
+
+
         return list;
     }
 
     @Override
     public boolean update(Commodity commodity) {
-        String sql = "update commodity set uid=?,name=?,date=?,price=?,description=?,category=? where cid=?";
+        String sql = "update commodity set uid=?,name=?,contact=?,date=?,price=?,description=?,category=? where cid=?";
 
         try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setInt(1,commodity.getUid());
+            ps.setInt(1, commodity.getUid());
             ps.setString(2, commodity.getName());
-            ps.setTimestamp(3, DateUtil.d2t(commodity.getCreateDate()));
-            ps.setFloat(4, commodity.getPrice());
-            ps.setString(5, commodity.getDescription());
-            ps.setInt(6, commodity.getCategory().getId());
-            ps.setInt(7,commodity.getCid());
+            ps.setString(3, commodity.getContact());
+            ps.setTimestamp(4, DateUtil.d2t(commodity.getCreateDate()));
+            ps.setFloat(5, commodity.getPrice());
+            ps.setString(6, commodity.getDescription());
+            ps.setInt(7, commodity.getCategory().getId());
+            ps.setInt(8, commodity.getCid());
             ps.execute();
 
         }catch (SQLException e) {
@@ -117,7 +118,7 @@ public class CommodityDAO implements DBOperation<Commodity> {
                 commodity.setCid(rs.getInt("cid"));
                 commodity.setUid(rs.getInt("uid"));
                 commodity.setName(rs.getString("name"));
-                commodity.setCreateDate(DateUtil.t2d(rs.getTimestamp("data")));
+                commodity.setCreateDate(DateUtil.t2d(rs.getTimestamp("date")));
                 commodity.setPrice(rs.getFloat("price"));
                 commodity.setDescription(rs.getString("description"));
                 commodity.setCategory(new CategoryDAO().get(id));
@@ -133,7 +134,4 @@ public class CommodityDAO implements DBOperation<Commodity> {
     public Commodity get(String name) {
         return null;
     }
-
-
-
 }

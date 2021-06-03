@@ -5,11 +5,12 @@ import java.util.List;
 
 public class Commodity {
     /*
-    Definitions：商品id 所属卖家 商品名称 创建日期 商品价格 商品图片 商品描述 商品种类
+    Definitions：商品id 所属卖家 联系方式 商品名称 创建日期 商品价格 商品图片 商品描述 商品种类
      */
     private int cid;
     private int uid;
     private String name;
+    private String contact;
     private Date createDate;
     private float price;
     private List<CommodityImages> commodityImages;
@@ -23,10 +24,10 @@ public class Commodity {
 
     }
 
-    public Commodity(int uid, String name, Date createDate, float price , String description, Category category) {
-        this.cid = cid;
+    public Commodity(int uid, String name, String contact, Date createDate, float price, String description, Category category) {
         this.uid = uid;
         this.name = name;
+        this.contact = contact;
         this.createDate = createDate;
         this.price = price;
         this.description = description;
@@ -47,6 +48,14 @@ public class Commodity {
 
     public void setUid(int uid) {
         this.uid = uid;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 
     public String getName() {

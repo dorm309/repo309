@@ -211,18 +211,18 @@
         var keyword = $("#keyword").val();
         console.log(keyword)
         //向服务器发送请求并携带参数keyword
-//       $.ajax({
-//                 //请求路径(服务器提供)
-//                 url: "ajaxServ1et" ,
-//                 type:"POST" , //请求方式.
-// //请求参数
-//                 //data: "username=jack&age=23" ,
-//                 data: { "username" :"jack", "age" :23},//JSON形式
-// //响应成功后的回调函数
-//                 success:function (data){
-//                 alert(data);
-//                 }
-//             });
+        $.ajax({
+            //请求路径(服务器提供)
+            url: "ajaxServ1et",
+            type: "POST",//请求方式.
+            //请求参数
+            //data:"username=jack&age=23",
+            data: {"username": "jack", "age": 23},//JSON形式
+            //响应成功后的回调函数
+            success: function (data) {
+                alert(data);
+            }
+        });
 
     })
 
@@ -256,7 +256,7 @@
 <!-- 弹框内容 -->
 <div class="content" style="display: none;">
     <!-- 表单 -->
-    <form class="layui-form" action="launchCommodity.servlet" method="post" action="">
+    <form class="layui-form" action="launchCommodity.servlet" method="post">
         <div class="layui-form-item">
             <label class="layui-form-label">商品名</label>
             <div class="layui-input-block">
@@ -268,6 +268,14 @@
             <label class="layui-form-label">价格</label>
             <div class="layui-input-block">
                 <input type="text" name="price" required lay-verify="required" placeholder="请输入价格" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="padding-right: 5px;">联系方式</label>
+            <div class="layui-input-block">
+                <input type="text" name="contact" required lay-verify="required" placeholder="请输入联系方式"
+                       autocomplete="off"
                        class="layui-input">
             </div>
         </div>

@@ -1,11 +1,8 @@
 <%@ page import="util.DBUtil" %>
-<html>
-<body>
 <%
     // 初始化数据库
-    new DBUtil();
+    if (DBUtil.getCon() == null)
+        new DBUtil();
     // 跳转登录页面
     response.sendRedirect("jsp/login.jsp");
 %>
-</body>
-</html>

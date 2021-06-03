@@ -12,14 +12,11 @@ public class UserDAO implements DBOperation<User> {
 
     @Override
     public boolean create(User user) {
-        String sql = "insert into user values(null,?,?,?,?,?)";
+        String sql = "insert into user values(null,?,?)";
         try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getPassword());
-            ps.setString(3, user.getStu_num());
-            ps.setString(4, user.getQq());
-            ps.setString(5, user.getPhone());
 
             ps.execute();
 
@@ -38,7 +35,7 @@ public class UserDAO implements DBOperation<User> {
     @Override
     public List<User> retrieve() {
         String sql = "SELECT * FROM user";
-        List<User> list = new ArrayList<User>();
+        List<User> list = new ArrayList<>();
         try {
             PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = ps.executeQuery();
@@ -47,9 +44,7 @@ public class UserDAO implements DBOperation<User> {
                 user.setUid(rs.getInt(1));
                 user.setUsername(rs.getString(2));
                 user.setPassword(rs.getString(3));
-                user.setStu_num(rs.getString(4));
-                user.setQq(rs.getString(5));
-                user.setPhone(rs.getString(6));
+
                 list.add(user);
             }
             rs.close();
@@ -63,16 +58,13 @@ public class UserDAO implements DBOperation<User> {
     @Override
     public boolean update(User user) {
 
-        String sql = "update user set username= ?, password=?, stu_num=?, qq=?, phone=? where uid = ?";
+        String sql = "update user set username= ?, password=? where uid = ?";
 
         try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getPassword());
-            ps.setString(3, user.getStu_num());
-            ps.setString(4, user.getQq());
-            ps.setString(5, user.getPhone());
-            ps.setInt(6, user.getUid());
+            ps.setInt(3, user.getUid());
 
             ps.execute();
             return true;
@@ -122,15 +114,6 @@ public class UserDAO implements DBOperation<User> {
         return user;
     }
 
-    //查询用户名是否存在
-    public boolean isExist(String name) {
-        User user = get(name);
-        if (user == null)
-            return false;
-
-        return true;
-    }
-
     //根据用户名获取对象
     @Override
     public User get(String name) {
@@ -155,30 +138,5 @@ public class UserDAO implements DBOperation<User> {
         }
         return user;
     }
-
-
-    //根据用户名与密码获取对象
-    public User get(String name, String password) {
-        User user = null;
-
-        String sql = "select * from user where username = ? and password=?";
-        try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setString(1, name);
-            ps.setString(2, password);
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                user = new User();
-                int id = rs.getInt("id");
-                user.setUsername(name);
-                user.setPassword(password);
-                user.setUid(id);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return user;
-    }
-
 }
 

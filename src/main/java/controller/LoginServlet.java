@@ -1,10 +1,10 @@
 package controller;
 
+import dao.DBOperation;
 import dao.UserDAO;
 import entity.User;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,7 +12,6 @@ import java.io.PrintWriter;
 /**
  * 处理登录逻辑
  */
-@WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -22,17 +21,20 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         //比对数据库信息
-        UserDAO userDAO = new UserDAO();
+        DBOperation<User> userDB = new UserDAO();
 
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=utf-8");
 
         PrintWriter out = response.getWriter();
-        if (!userDAO.isExist(username)) {
-            out.write("<script>alert('用户名不能为空！'); window.location='login.jsp' </script>");
-        }
 
-        User user = userDAO.get(username);
+        //处理异常输入
+        if (username.equals(""))
+            out.write("<script>alert('用户名不能为空！'); window.location='login.jsp' </script>");
+        if (userDB.get(username) == null)
+            out.write("<script>alert('未注册，请先注册'); window.location='regist.jsp' </script>");
+
+        User user = userDB.get(username);
         String username_dao = user.getUsername();
         String password_dao = user.getPassword();
 
@@ -68,10 +70,8 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("loginUser", user);
 
             out.write("<script>alert('登录成功'); window.location='index.jsp' </script>");
-        } else if (username.equals(username_dao))
+        } else
             out.write("<script>alert('登录名或密码错误，请重试'); window.location='login.jsp' </script>");
-        else
-            out.write("<script>alert('未注册，请先注册'); window.location='regist.jsp' </script>");
 
         out.flush();
         out.close();

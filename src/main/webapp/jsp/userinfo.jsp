@@ -99,7 +99,8 @@
                         if (c.getUid() == user.getUid()) {
                 %>
                 <tr>
-                    <td><h4 class="title" <%=c.getName()%> </h4></td>
+                    <td><h4 class="title"><%=c.getName()%>
+                    </h4></td>
                     <td><span class="num"> <%=c.getPrice()%> </span></td>
                     <td><span class="linkdel">删除</span></td>   <!--点击会触发删除事件，具体行为见底部js函数-->
                 </tr>
@@ -158,7 +159,6 @@
             $(".info").css('display', 'block')
             $("#info").addClass("pactive")
             //向服务器发送ajax请求获取该页数据！！
-
 
         }
     );
