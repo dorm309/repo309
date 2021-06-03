@@ -256,7 +256,7 @@
 <!-- 弹框内容 -->
 <div class="content" style="display: none;">
     <!-- 表单 -->
-    <form class="layui-form" action="">
+    <form class="layui-form" action="launchCommodity.servlet" method="post" action="">
         <div class="layui-form-item">
             <label class="layui-form-label">商品名</label>
             <div class="layui-input-block">

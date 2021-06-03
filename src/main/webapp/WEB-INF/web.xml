@@ -16,6 +16,10 @@
         <servlet-name>UpdatePasswordServlet</servlet-name>
         <servlet-class>controller.UpdatePasswordServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LaunchCommodityServlet</servlet-name>
+        <servlet-class>controller.LaunchCommodityServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/jsp/register.servlet</url-pattern>
@@ -27,5 +31,9 @@
     <servlet-mapping>
         <servlet-name>UpdatePasswordServlet</servlet-name>
         <url-pattern>/jsp/updatePassword.servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LaunchCommodityServlet</servlet-name>
+        <url-pattern>/jsp/launchCommodity.servlet</url-pattern>
     </servlet-mapping>
 </web-app>
