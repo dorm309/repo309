@@ -23,11 +23,10 @@ public class Commodity {
 
     }
 
-    public Commodity(String name, Date createDate, float price, List<CommodityImages> commodityImages, String description, Category category) {
+    public Commodity(String name, Date createDate, float price, String description, Category category) {
         this.name = name;
         this.createDate = createDate;
         this.price = price;
-        this.commodityImages = commodityImages;
         this.description = description;
         this.category = category;
     }

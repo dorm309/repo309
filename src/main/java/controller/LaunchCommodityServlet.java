@@ -33,22 +33,15 @@ public class LaunchCommodityServlet extends HttpServlet {
         List<CommodityImages> commodityImages = new ArrayList<>();
         //..
 
-        //处理商品种类
-        //..
+        //处理商品种类(保留)
 
         //保存商品信息到数据库
-        Commodity commodity = new Commodity(commodity_name, launchTime, commodity_price, commodityImages, description, null);
+        Commodity commodity = new Commodity(commodity_name, launchTime, commodity_price, description, null);
         DBOperation<Commodity> db = new CommodityDAO();
         db.create(commodity);
 
         //保存图片至：webapp/images/commodity
         //..
-
-        //添加已发布商品至：个人中心-我的发布
-
-
-        //展示新发布商品信息
-
     }
 
     @Override

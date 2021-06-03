@@ -7,6 +7,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8"
          pageEncoding="UTF-8" import="entity.User" %>
+<%@ page import="dao.DBOperation" %>
+<%@ page import="entity.Commodity" %>
+<%@ page import="dao.CommodityDAO" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,17 +90,33 @@
                 </tr>
                 </thead>
                 <tbody>
+                <%
+                    //个人中心-我的发布
+                    DBOperation<Commodity> db = new CommodityDAO();
+                    List<Commodity> launched_commodities_list = db.retrieve();
+                    user = (User) session.getAttribute("loginUser");
+                    for (Commodity c : launched_commodities_list) {
+                        if (c.getUid() == user.getUid()) {
+                %>
                 <tr>
-                    <td><h4 class="title">全新女装</h4></td>
-                    <td><span class="num">99元</span></td>
+                    <td><h4 class="title" <%=c.getName()%> </h4></td>
+                    <td><span class="num"> <%=c.getPrice()%> </span></td>
                     <td><span class="linkdel">删除</span></td>   <!--点击会触发删除事件，具体行为见底部js函数-->
                 </tr>
-                <tr>
-                    <td><h4 class="title">全新女装</h4></td>
-                    <td><span class="num">99元</span></td>
-                    <td><span class="linkdel">删除</span></td>   <!--点击会触发删除事件，具体行为见底部js函数-->
-                </tr>
-
+                <%
+                        }
+                    }
+                %>
+                <%--                <tr>--%>
+                <%--                    <td><h4 class="title">全新女装</h4></td>--%>
+                <%--                    <td><span class="num">99元</span></td>--%>
+                <%--                    <td><span class="linkdel">删除</span></td>   <!--点击会触发删除事件，具体行为见底部js函数-->--%>
+                <%--                </tr>--%>
+                <%--                <tr>--%>
+                <%--                    <td><h4 class="title">全新女装</h4></td>--%>
+                <%--                    <td><span class="num">99元</span></td>--%>
+                <%--                    <td><span class="linkdel">删除</span></td>   <!--点击会触发删除事件，具体行为见底部js函数-->--%>
+                <%--                </tr>--%>
                 </tbody>
 
             </table>
