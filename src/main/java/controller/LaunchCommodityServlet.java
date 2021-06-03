@@ -37,7 +37,8 @@ public class LaunchCommodityServlet extends HttpServlet {
         //..
 
         //保存商品信息到数据库
-        Commodity commodity = new Commodity(commodity_name, launchTime, commodity_price, commodityImages, description, null);
+        int uid=0;
+        Commodity commodity = new Commodity(uid,commodity_name, launchTime, commodity_price, description, null);
         DBOperation<Commodity> db = new CommodityDAO();
         db.create(commodity);
 

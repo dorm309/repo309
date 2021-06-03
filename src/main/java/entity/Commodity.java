@@ -23,18 +23,16 @@ public class Commodity {
 
     }
 
-    public Commodity(String name, Date createDate, float price, List<CommodityImages> commodityImages, String description, Category category) {
+    public Commodity(int uid, String name, Date createDate, float price , String description, Category category) {
+        this.cid = cid;
+        this.uid = uid;
         this.name = name;
         this.createDate = createDate;
         this.price = price;
-        this.commodityImages = commodityImages;
         this.description = description;
         this.category = category;
     }
 
-    /*
-    Getters and Setters
-     */
     public int getCid() {
         return cid;
     }
@@ -98,4 +96,6 @@ public class Commodity {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+
 }

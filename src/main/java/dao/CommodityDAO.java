@@ -12,17 +12,17 @@ import java.util.List;
 
 public class CommodityDAO implements DBOperation<Commodity> {
 
-
     @Override
     public boolean create(Commodity commodity) {
-        String sql = "insert into commodity values(null,?,?,?,?,?)";
+        String sql = "insert into commodity values(null,?,?,?,?,?,?)";
         try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-            ps.setString(1, commodity.getName());
-            ps.setTimestamp(2, DateUtil.d2t(commodity.getCreateDate()));
-            ps.setFloat(3, commodity.getPrice());
-            ps.setString(4, commodity.getDescription());
-            ps.setInt(5, commodity.getCategory().getId());
+            ps.setInt(1,commodity.getUid());
+            ps.setString(2, commodity.getName());
+            ps.setTimestamp(3, DateUtil.d2t(commodity.getCreateDate()));
+            ps.setFloat(4, commodity.getPrice());
+            ps.setString(5, commodity.getDescription());
+            ps.setInt(6, commodity.getCategory().getId());
             ps.execute();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -44,35 +44,42 @@ public class CommodityDAO implements DBOperation<Commodity> {
         try {
             PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = ps.executeQuery();
+
             while (rs.next()) {
                 Commodity commodity = new Commodity();
-                commodity.setCid(rs.getInt(1));
+                commodity.setCid(rs.getInt("cid"));
+                commodity.setUid(rs.getInt("uid"));
+                commodity.setCreateDate(DateUtil.t2d(rs.getTimestamp("date")));
                 commodity.setName(rs.getString("name"));
-                commodity.setCreateDate(DateUtil.t2d(rs.getTimestamp("data")));
                 commodity.setPrice(rs.getFloat("price"));
                 commodity.setDescription(rs.getString("description"));
-                commodity.setCategory(new CategoryDAO().get(rs.getInt("commodity")));
+                commodity.setCategory(new CategoryDAO().get(rs.getInt("category")));
                 list.add(commodity);
+
             }
-            rs.close();
-            ps.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        for(Commodity c:list)
+        {
+            System.out.println(c);
         }
         return list;
     }
 
     @Override
     public boolean update(Commodity commodity) {
-        String sql = "update commodity set name=?,date=?,price=?,description=?,category=? where cid=?";
+        String sql = "update commodity set uid=?,name=?,date=?,price=?,description=?,category=? where cid=?";
 
         try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setString(1, commodity.getName());
-            ps.setTimestamp(2, DateUtil.d2t(commodity.getCreateDate()));
-            ps.setFloat(3, commodity.getPrice());
-            ps.setString(4, commodity.getDescription());
-            ps.setInt(5, commodity.getCategory().getId());
-            ps.setInt(6,commodity.getCid());
+            ps.setInt(1,commodity.getUid());
+            ps.setString(2, commodity.getName());
+            ps.setTimestamp(3, DateUtil.d2t(commodity.getCreateDate()));
+            ps.setFloat(4, commodity.getPrice());
+            ps.setString(5, commodity.getDescription());
+            ps.setInt(6, commodity.getCategory().getId());
+            ps.setInt(7,commodity.getCid());
             ps.execute();
 
         }catch (SQLException e) {
@@ -108,6 +115,7 @@ public class CommodityDAO implements DBOperation<Commodity> {
             if (rs.next()) {
                 commodity = new Commodity();
                 commodity.setCid(rs.getInt("cid"));
+                commodity.setUid(rs.getInt("uid"));
                 commodity.setName(rs.getString("name"));
                 commodity.setCreateDate(DateUtil.t2d(rs.getTimestamp("data")));
                 commodity.setPrice(rs.getFloat("price"));
@@ -120,6 +128,12 @@ public class CommodityDAO implements DBOperation<Commodity> {
         }
         return commodity;
     }
+
+    @Override
+    public Commodity get(String name) {
+        return null;
+    }
+
 
 
 }

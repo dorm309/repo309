@@ -98,6 +98,30 @@ public class UserDAO implements DBOperation<User> {
         }
     }
 
+    @Override
+    public User get(int id) {
+        User user = null;
+
+        String sql = "select * from user where uid = ?";
+        try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                user = new User();
+                String name = rs.getString("name");
+                String password = rs.getString("password");
+                user.setUsername(name);
+                user.setPassword(password);
+                user.setUid(id);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
     //查询用户名是否存在
     public boolean isExist(String name) {
         User user = get(name);
@@ -108,6 +132,7 @@ public class UserDAO implements DBOperation<User> {
     }
 
     //根据用户名获取对象
+    @Override
     public User get(String name) {
         User user = null;
 
@@ -131,11 +156,12 @@ public class UserDAO implements DBOperation<User> {
         return user;
     }
 
+
     //根据用户名与密码获取对象
     public User get(String name, String password) {
         User user = null;
 
-        String sql = "select * from user where name = ? and password=?";
+        String sql = "select * from user where username = ? and password=?";
         try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, name);
             ps.setString(2, password);

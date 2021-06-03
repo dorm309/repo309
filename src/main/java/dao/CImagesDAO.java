@@ -10,7 +10,6 @@ import java.util.List;
 
 public class CImagesDAO implements DBOperation<CommodityImages>{
 
-
     @Override
     public boolean create(CommodityImages commodityImages) {
         String sql = "insert into images values(null,?)";
@@ -58,6 +57,36 @@ public class CImagesDAO implements DBOperation<CommodityImages>{
         return list;
     }
 
+    public List<CommodityImages> list(Commodity commodity) {
+
+        List<CommodityImages> list = new ArrayList<CommodityImages>();
+
+        String sql = "select * from images where cid =?";
+
+        try (Connection c = DBUtil.getCon(); PreparedStatement ps = c.prepareStatement(sql)) {
+
+            ps.setInt(1, commodity.getCid());
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                CommodityImages commodityImages = new CommodityImages();
+                int id = rs.getInt("id");
+
+                commodityImages.setId(id);
+                commodityImages.setCommodity(commodity);
+
+                list.add(commodityImages);
+            }
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+
     @Override
     public boolean update(CommodityImages commodityImages) {
         return false;
@@ -79,4 +108,35 @@ public class CImagesDAO implements DBOperation<CommodityImages>{
         return true;
 
     }
+
+    @Override
+    public CommodityImages get(int id) {
+        CommodityImages commodityImages = null;
+
+        try (Connection c = DBUtil.getCon(); Statement s = c.createStatement()) {
+
+            String sql = "select * from images where id = " + id;
+
+            ResultSet rs = s.executeQuery(sql);
+
+            if (rs.next()) {
+                commodityImages = new CommodityImages();
+                Commodity commodity = new CommodityDAO().get(rs.getInt("cid"));
+                commodityImages.setCommodity(commodity);
+                commodityImages.setId(id);
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return commodityImages;
+    }
+
+
+    @Override
+    public CommodityImages get(String name) {
+        return null;
+    }
+
 }

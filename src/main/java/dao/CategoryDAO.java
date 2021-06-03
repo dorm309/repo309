@@ -84,7 +84,7 @@ public class CategoryDAO implements DBOperation<Category>{
         }
         return true;
     }
-
+    @Override
     public Category get(int id) {
         Category category = null;
 
@@ -107,4 +107,10 @@ public class CategoryDAO implements DBOperation<Category>{
         }
         return category;
     }
+
+    @Override
+    public Category get(String name) {
+        return null;
+    }
+
 }
