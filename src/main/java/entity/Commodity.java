@@ -5,9 +5,10 @@ import java.util.List;
 
 public class Commodity {
     /*
-    Definitions：商品id 商品名称 创建日期 商品价格 商品图片 商品描述 商品种类
+    Definitions：商品id 所属卖家 商品名称 创建日期 商品价格 商品图片 商品描述 商品种类
      */
     private int cid;
+    private int uid;
     private String name;
     private Date createDate;
     private float price;
@@ -40,6 +41,14 @@ public class Commodity {
 
     public void setCid(int cid) {
         this.cid = cid;
+    }
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 
     public String getName() {
