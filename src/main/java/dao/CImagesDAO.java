@@ -13,7 +13,7 @@ public class CImagesDAO implements DBOperation<CommodityImages>{
     @Override
     public boolean create(CommodityImages commodityImages) {
         String sql = "insert into images values(null,?)";
-        try (Connection c = DBUtil.getCon(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = new DBUtil().getCon(); PreparedStatement ps = c.prepareStatement(sql)) {
 
             ps.setInt(1, commodityImages.getCommodity().getCid());
             ps.execute();
@@ -37,7 +37,7 @@ public class CImagesDAO implements DBOperation<CommodityImages>{
         List<CommodityImages> list = new ArrayList<CommodityImages>();
         try {
 
-            PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = new DBUtil().getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -63,7 +63,7 @@ public class CImagesDAO implements DBOperation<CommodityImages>{
 
         String sql = "select * from images where cid =?";
 
-        try (Connection c = DBUtil.getCon(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = new DBUtil().getCon(); PreparedStatement ps = c.prepareStatement(sql)) {
 
             ps.setInt(1, commodity.getCid());
 
@@ -94,7 +94,7 @@ public class CImagesDAO implements DBOperation<CommodityImages>{
 
     @Override
     public boolean delete(int id) {
-        try (Connection c = DBUtil.getCon(); Statement s = c.createStatement()) {
+        try (Connection c = new DBUtil().getCon(); Statement s = c.createStatement()) {
 
             String sql = "delete from images where id = " + id;
 
@@ -113,7 +113,7 @@ public class CImagesDAO implements DBOperation<CommodityImages>{
     public CommodityImages get(int id) {
         CommodityImages commodityImages = null;
 
-        try (Connection c = DBUtil.getCon(); Statement s = c.createStatement()) {
+        try (Connection c = new DBUtil().getCon(); Statement s = c.createStatement()) {
 
             String sql = "select * from images where id = " + id;
 

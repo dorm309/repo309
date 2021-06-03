@@ -28,7 +28,6 @@ public class LaunchCommodityServlet extends HttpServlet {
 
         //处理上传图片
 
-
         //处理商品种类(保留)
 
         //保存商品信息到数据库

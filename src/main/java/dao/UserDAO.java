@@ -13,7 +13,7 @@ public class UserDAO implements DBOperation<User> {
     @Override
     public boolean create(User user) {
         String sql = "insert into user values(null,?,?)";
-        try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement ps = new DBUtil().getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getPassword());
@@ -37,7 +37,7 @@ public class UserDAO implements DBOperation<User> {
         String sql = "SELECT * FROM user";
         List<User> list = new ArrayList<>();
         try {
-            PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = new DBUtil().getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 User user = new User();
@@ -60,7 +60,7 @@ public class UserDAO implements DBOperation<User> {
 
         String sql = "update user set username= ?, password=? where uid = ?";
 
-        try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement ps = new DBUtil().getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getPassword());
@@ -78,7 +78,7 @@ public class UserDAO implements DBOperation<User> {
     @Override
     public boolean delete(int id) {
 
-        try (Statement s = DBUtil.getCon().createStatement()) {
+        try (Statement s = new DBUtil().getCon().createStatement()) {
 
             String sql = "delete from user where uid = " + id;
 
@@ -95,7 +95,7 @@ public class UserDAO implements DBOperation<User> {
         User user = null;
 
         String sql = "select * from user where uid = ?";
-        try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement ps = new DBUtil().getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
 
@@ -107,7 +107,8 @@ public class UserDAO implements DBOperation<User> {
                 user.setPassword(password);
                 user.setUid(id);
             }
-
+            ps.close();
+            rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -120,7 +121,7 @@ public class UserDAO implements DBOperation<User> {
         User user = null;
 
         String sql = "select * from user where username = ?";
-        try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement ps = new DBUtil().getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, name);
             ResultSet rs = ps.executeQuery();
 
@@ -132,7 +133,8 @@ public class UserDAO implements DBOperation<User> {
                 user.setPassword(password);
                 user.setUid(id);
             }
-
+            ps.close();
+            rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

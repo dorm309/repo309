@@ -6,7 +6,7 @@ public class DBUtil {
     /*
     Definitions：数据库连接 IP地址 端口 数据库名称 编码 用户名 密码
      */
-    private static Connection con;
+    private Connection con;
     private String ip = "127.0.0.1";
     private int port = 3306;
     private String database = "mess";
@@ -32,38 +32,38 @@ public class DBUtil {
         }
     }
 
-    /*
-    Administrator login
-         */
-    public static boolean adminLogin(String username, char[] password) {
-        String sql = "SELECT username FROM Administrator WHERE username = ? AND password = ?";
-
-        String myPassword = "";
-        for (int i = 0; i < password.length; i++) {
-            myPassword += password[i];
-        }
-
-        boolean flag = false;
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, username);
-            ps.setString(2, myPassword);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                flag = true;
-            }
-            rs.close();
-            ps.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return flag;
-    }
+//    /*
+//    Administrator login
+//         */
+//    public  boolean adminLogin(String username, char[] password) {
+//        String sql = "SELECT username FROM Administrator WHERE username = ? AND password = ?";
+//
+//        String myPassword = "";
+//        for (int i = 0; i < password.length; i++) {
+//            myPassword += password[i];
+//        }
+//
+//        boolean flag = false;
+//        try {
+//            PreparedStatement ps = con.prepareStatement(sql);
+//            ps.setString(1, username);
+//            ps.setString(2, myPassword);
+//            ResultSet rs = ps.executeQuery();
+//            if (rs.next()) {
+//                flag = true;
+//            }
+//            rs.close();
+//            ps.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return flag;
+//    }
 
     /*
     Getter
      */
-    public static Connection getCon() {
+    public Connection getCon() {
         return con;
     }
 }

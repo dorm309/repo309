@@ -94,6 +94,10 @@
                     //个人中心-我的发布
                     DBOperation<Commodity> db = new CommodityDAO();
                     List<Commodity> launched_commodities_list = db.retrieve();
+                    for (Commodity c : launched_commodities_list) {
+                        System.out.println(c.getName() + " " + c.getPrice());
+
+                    }
                     user = (User) session.getAttribute("loginUser");
                     for (Commodity c : launched_commodities_list) {
                         if (c.getUid() == user.getUid()) {

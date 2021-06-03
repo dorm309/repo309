@@ -14,7 +14,7 @@ public class CommodityDAO implements DBOperation<Commodity> {
     @Override
     public boolean create(Commodity commodity) {
         String sql = "insert into commodity values(null,?,?,?,?,?,?,?)";
-        try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement ps = new DBUtil().getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, commodity.getUid());
             ps.setString(2, commodity.getName());
@@ -43,7 +43,7 @@ public class CommodityDAO implements DBOperation<Commodity> {
         List<Commodity> list = new ArrayList<>();
 
         try {
-            PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = new DBUtil().getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -72,7 +72,7 @@ public class CommodityDAO implements DBOperation<Commodity> {
     public boolean update(Commodity commodity) {
         String sql = "update commodity set uid=?,name=?,contact=?,date=?,price=?,description=?,category=? where cid=?";
 
-        try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement ps = new DBUtil().getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setInt(1, commodity.getUid());
             ps.setString(2, commodity.getName());
             ps.setString(3, commodity.getContact());
@@ -95,7 +95,7 @@ public class CommodityDAO implements DBOperation<Commodity> {
 
         String sql = "delete from commodity where cid = " + id;
 
-        try (Connection c = DBUtil.getCon(); Statement s = c.createStatement()) {
+        try (Connection c = new DBUtil().getCon(); Statement s = c.createStatement()) {
             s.execute(sql);
 
         } catch (SQLException e) {
@@ -109,7 +109,7 @@ public class CommodityDAO implements DBOperation<Commodity> {
         Commodity commodity = null;
 
         String sql = "select * from commodity where cid = ?";
-        try (PreparedStatement ps = DBUtil.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement ps = new DBUtil().getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
 
