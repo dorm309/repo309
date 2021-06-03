@@ -1,0 +1,4 @@
+数据库名：mess
+用户名：root
+密码：admin
+使用时，根据本机数据库情况在DBUtil下修改loginName、password
