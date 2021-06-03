@@ -94,10 +94,6 @@
                     //个人中心-我的发布
                     DBOperation<Commodity> db = new CommodityDAO();
                     List<Commodity> launched_commodities_list = db.retrieve();
-                    for (Commodity c : launched_commodities_list) {
-                        System.out.println(c.getName() + " " + c.getPrice());
-
-                    }
                     user = (User) session.getAttribute("loginUser");
                     for (Commodity c : launched_commodities_list) {
                         if (c.getUid() == user.getUid()) {
@@ -112,16 +108,6 @@
                         }
                     }
                 %>
-                <%--                <tr>--%>
-                <%--                    <td><h4 class="title">全新女装</h4></td>--%>
-                <%--                    <td><span class="num">99元</span></td>--%>
-                <%--                    <td><span class="linkdel">删除</span></td>   <!--点击会触发删除事件，具体行为见底部js函数-->--%>
-                <%--                </tr>--%>
-                <%--                <tr>--%>
-                <%--                    <td><h4 class="title">全新女装</h4></td>--%>
-                <%--                    <td><span class="num">99元</span></td>--%>
-                <%--                    <td><span class="linkdel">删除</span></td>   <!--点击会触发删除事件，具体行为见底部js函数-->--%>
-                <%--                </tr>--%>
                 </tbody>
 
             </table>
@@ -170,20 +156,7 @@
     <!-- 底部 -->
 </div>
 <div class="footer">
-    <div class="w">
-        <div class="copyright" style="float: left; margin-top: 15px; font-size: 12px ;color: #7b7b7b;">
-            <h4>关于我们</h4> 西柚有余倾力打造的校园二手信息共享台。<br/>
-            师生将商品上传到 该 平台，用户可以选择自己需要的产品，平台免费使用。
-        </div>
-        <div class="links" style="float: right;margin-top: 15px; color: #7b7b7b; font-size: 12px;">
-            <h4>友情链接</h4>
-            <a href="#">西南石油大学</a>
-            <a href="#">学工系统</a>
-            <a href="#">四川省教育厅</a>
-            <a href="#">教务处</a>
-
-        </div>
-    </div>
+    <jsp:include page="copyright.jsp"></jsp:include>
 </div>
 
 </body>

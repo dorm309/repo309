@@ -92,30 +92,18 @@
 </div>
 <!-- 底部 -->
 <div class="footer">
-    <div class="w">
-        <div class="copyright" style="float: left; margin-top: 15px; font-size: 12px ;color: #7b7b7b;">
-            <h4>关于我们</h4> 西柚有余倾力打造的校园二手信息共享台。<br/>
-            师生将商品上传到 该 平台，用户可以选择自己需要的产品，平台免费使用。
-        </div>
-        <div class="links" style="float: right;margin-top: 15px; color: #7b7b7b; font-size: 12px;">
-            <h4>友情链接</h4>
-            <a href="#">西南石油大学</a>
-            <a href="#">学工系统</a>
-            <a href="#">四川省教育厅</a>
-            <a href="#">教务处</a>
+    <jsp:include page="copyright.jsp"></jsp:include>
+</div>
 
-        </div>
-    </div>
-
-    <script>
-        $(".linkdel").click(function () {
-            console.log("取消收藏该商品")
-            //获取取消商品需要的主键
+<script>
+    $(".linkdel").click(function () {
+        console.log("取消收藏该商品")
+        //获取取消商品需要的主键
 
 
-            //发送ajax请求
-            //需要后端提供接口
-        });
+        //发送ajax请求
+        //需要后端提供接口
+    });
     </script>
 
 </body>
