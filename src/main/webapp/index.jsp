@@ -7,6 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ page import="dao.DBOperation" %>
+<%@ page import="entity.Category" %>
+<%@ page import="dao.CategoryDAO" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -220,8 +223,8 @@
         //多窗口模式，层叠置顶
         layer.open({
             type: 1 //此处以iframe举例
-            , title: '发布信息'
-            , area: ['800px', '500px']
+            , title: '发布商品信息'
+            , area: ['800px', '550px']
             , shade: 0
             , maxmin: true
             , offset: 'auto' //居中
@@ -266,24 +269,46 @@
                        class="layui-input">
             </div>
         </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="padding-right: 5px;">商品种类</label>
+            <div class="layui-input-block">
+                <select id='checkedLevel' style="width:120px;height:28px;" multiple="multiple"
+                        name="category" required lay-verify="required"
+                        autocomplete="off"
+                        class="layui-input">
+                    <%
+                        DBOperation<Category> categoryDB = new CategoryDAO();
+                        int i = 1;
+                        for (Category cat : categoryDB.retrieve()) {
+                    %>
+                    <option value="<%=i%>"><%=cat.getName()%>
+                    </option>
+                    <%
+                            i++;
+                        }
+                    %>
+                </select>
+            </div>
+        </div>
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">描述</label>
             <div class="layui-input-block">
                 <textarea name="desc" placeholder="请输入描述内容" class="layui-textarea"></textarea>
             </div>
         </div>
-        <!-- 图片上传 -->
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button class="layui-btn" id="test1">
-                    <i class="layui-icon">&#xe67c;</i>上传图片
-                </button>
-            </div>
-        </div>
+        <input type="file">
+        <%--        <!-- 图片上传 -->--%>
+        <%--        <div class="layui-form-item">--%>
+        <%--            <div class="layui-input-block">--%>
+        <%--                <button class="layui-btn" id="test1">--%>
+        <%--                    <i class="layui-icon">&#xe67c;</i>上传图片--%>
+        <%--                </button>--%>
+        <%--            </div>--%>
+        <%--        </div>--%>
         <!-- 提交表单 -->
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                <button class="layui-btn" type="submit">立即提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
