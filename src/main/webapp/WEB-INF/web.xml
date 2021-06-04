@@ -22,9 +22,14 @@
         <servlet-class>controller.LaunchCommodityServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>GetCImagesServlet</servlet-name>
+        <servlet-class>controller.GetCImagesServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>AddCImagesServlet</servlet-name>
         <servlet-class>controller.AddCImagesServlet</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -40,6 +45,10 @@
     <servlet-mapping>
         <servlet-name>LaunchCommodityServlet</servlet-name>
         <url-pattern>/launchCommodity</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetCImagesServlet</servlet-name>
+        <url-pattern>/GetCImagesServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddCImagesServlet</servlet-name>
