@@ -13,7 +13,7 @@ public class CImagesDAO implements DBOperation<CommodityImages>{
     @Override
     public boolean create(CommodityImages commodityImages) {
         String sql = "insert into images values(null,?)";
-        try (Connection c = new DBUtil().getCon(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = new DBUtil().getCon(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, commodityImages.getCommodity().getCid());
             ps.execute();
