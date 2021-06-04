@@ -110,7 +110,22 @@ public class CategoryDAO implements DBOperation<Category>{
 
     @Override
     public Category get(String name) {
-        return null;
-    }
+        Category category = null;
 
+        try (Connection c = new DBUtil().getCon(); Statement s = c.createStatement()) {
+
+            String sql = "select * from Category where name = " + name;
+
+            ResultSet rs = s.executeQuery(sql);
+
+            if (rs.next()) {
+                category = new Category();
+                category.setId(rs.getInt("id"));
+                category.setName(name);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return category;
+    }
 }
