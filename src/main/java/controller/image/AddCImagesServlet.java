@@ -1,4 +1,4 @@
-package controller;
+package controller.image;
 
 import dao.CImagesDAO;
 import dao.CommodityDAO;

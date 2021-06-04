@@ -23,11 +23,15 @@
     </servlet>
     <servlet>
         <servlet-name>GetCImagesServlet</servlet-name>
-        <servlet-class>controller.GetCImagesServlet</servlet-class>
+        <servlet-class>controller.image.GetCImagesServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddCImagesServlet</servlet-name>
-        <servlet-class>controller.AddCImagesServlet</servlet-class>
+        <servlet-class>controller.image.AddCImagesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteCImagesServlet</servlet-name>
+        <servlet-class>controller.image.DeleteCImagesServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -53,6 +57,10 @@
     <servlet-mapping>
         <servlet-name>AddCImagesServlet</servlet-name>
         <url-pattern>/AddCImagesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCImagesServlet</servlet-name>
+        <url-pattern>/DeleteCImagesServlet</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>
