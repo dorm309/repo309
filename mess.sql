@@ -11,7 +11,7 @@
  Target Server Version : 50715
  File Encoding         : 65001
 
- Date: 03/06/2021 21:19:13
+ Date: 04/06/2021 20:51:30
 */
 
 SET NAMES utf8mb4;
@@ -49,7 +49,7 @@ CREATE TABLE `category`
     `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 1
+  AUTO_INCREMENT = 6
   CHARACTER SET = utf8
   COLLATE = utf8_general_ci
   ROW_FORMAT = COMPACT;
@@ -57,6 +57,16 @@ CREATE TABLE `category`
 -- ----------------------------
 -- Records of category
 -- ----------------------------
+INSERT INTO `category`
+VALUES (1, '服装鞋帽');
+INSERT INTO `category`
+VALUES (2, '教育图书');
+INSERT INTO `category`
+VALUES (3, '饰品挂件');
+INSERT INTO `category`
+VALUES (4, '生活用品');
+INSERT INTO `category`
+VALUES (5, '电子产品');
 
 -- ----------------------------
 -- Table structure for commodity
@@ -76,7 +86,7 @@ CREATE TABLE `commodity`
     INDEX `commodity_category_id_fk` (`category`) USING BTREE,
     INDEX `commodity_user_uid_fk` (`uid`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 224
+  AUTO_INCREMENT = 230
   CHARACTER SET = utf8
   COLLATE = utf8_general_ci
   ROW_FORMAT = COMPACT;
@@ -85,11 +95,11 @@ CREATE TABLE `commodity`
 -- Records of commodity
 -- ----------------------------
 INSERT INTO `commodity`
-VALUES (221, 1, '运动鞋', '电话：17269278707', '2021-06-03 13:44:21', 99.00, 'test', NULL);
+VALUES (1, 1, '艾瑞克', '1234567', '2021-06-04 20:20:30', 123.00, '测试测试', 5);
 INSERT INTO `commodity`
-VALUES (222, 1, '男装', 'qq：11256837654', '2021-06-03 13:44:41', 89.00, '测试', NULL);
+VALUES (2, 1, '计算机基础', 'qq：1872375096', '2021-06-04 20:22:17', 28.00, '九成新', 2);
 INSERT INTO `commodity`
-VALUES (223, 1, '小饰品', 'wx：qianbaidu', '2021-07-02 13:44:58', 7.90, '测试test', NULL);
+VALUES (3, 1, '波司登冲锋衣', 'wx：大菠萝', '2021-06-04 20:37:46', 1298.00, '生活费，谢谢', 1);
 
 -- ----------------------------
 -- Table structure for images
