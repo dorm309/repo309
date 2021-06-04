@@ -14,9 +14,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>商品详情</title>
-    <script type="text/javascript" src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
-    <link rel="stylesheet" href="../plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/css.css">
+    <script type="text/javascript" src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <link rel="stylesheet" href="plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/css.css">
 </head>
 <body>
 <!-- 顶部导航栏 -->

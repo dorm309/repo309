@@ -14,10 +14,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>西柚有余|注册</title>
-    <script type="text/javascript" src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="plugins/jQuery/jquery-2.2.3.min.js"></script>
 
-    <link rel="stylesheet" href="../plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/css.css">
+    <link rel="stylesheet" href="plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/css.css">
 
 </head>
 <body>
@@ -35,7 +35,7 @@
         <div class="regist-logo">用户注册</div>
     </div>
     <div class="regist">
-        <form action="register.servlet" method="post" class="form-horizontal"
+        <form action="register" method="post" class="form-horizontal"
               style="padding-right:145px;padding-left: 145px;" onsubmit="return verify()">
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">账号</label>

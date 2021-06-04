@@ -18,8 +18,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人中心</title>
-    <link rel="stylesheet" href="../plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/css.css">
+    <link rel="stylesheet" href="plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/css.css">
 </head>
 <body style="background-color: #f7f7f7;">
 <!-- 导航栏 -->
@@ -62,7 +62,7 @@
         <!-- 展示修改密码 -->
         <div class="modify-info" style="padding: 20px;display: none; ">
             <!-- 验证不通过则阻止向服务器提交数据 -->
-            <form action="updatePassword.servlet" method="post" onsubmit="return verify()">
+            <form action="updatePassword" method="post" onsubmit="return verify()">
                 <h2>输入新密码</h2>
                 <div class="name-detail" style=" border-bottom:1px solid #ddd;;padding-bottom: 20px;font-size: 20px;">
                     <input class="password1" name="newPassword" type="password">
@@ -160,7 +160,7 @@
 </div>
 
 </body>
-<script type="text/javascript" src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script>
     //页面切换
     $("#info").click(

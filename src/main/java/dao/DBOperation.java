@@ -1,11 +1,15 @@
 package dao;
 
+import util.DBUtil;
+
 import java.util.List;
 
 public interface DBOperation<T> {
     /*
      * CRUD Operations
      */
+    DBUtil database = new DBUtil();
+
     boolean create(T t);
 
     List<T> retrieve();

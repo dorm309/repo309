@@ -29,8 +29,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>西柚有余|登录</title>
-    <link rel="stylesheet" href="../plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/css.css">
+    <link rel="stylesheet" href="plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/css.css">
 
 </head>
 <body>
@@ -38,11 +38,11 @@
     <div class="logo"></div>
     <div class="login-logo">用户登录</div>
 </div>
-<div class="bg" style="position: absolute; width: 100%;height: 600px; background-image:url(../image/bg.png) ;"></div>
+<div class="bg" style="position: absolute; width: 100%;height: 600px; background-image:url(image/bg.png) ;"></div>
 <div class="contain">
     <div class="login">
         <div class="title" style="margin-top: 15px; text-align: center; font-size: 30px;">登录</div>
-        <form action="login.servlet" method="post" class="form-horizontal">
+        <form action="login" method="post" class="form-horizontal">
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">账号</label>
                 <div class="col-sm-10">
