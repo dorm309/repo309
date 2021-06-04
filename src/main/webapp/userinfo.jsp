@@ -7,10 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8"
          pageEncoding="UTF-8" import="entity.User" %>
-<%@ page import="dao.DBOperation" %>
-<%@ page import="entity.Commodity" %>
-<%@ page import="dao.CommodityDAO" %>
-<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,8 +14,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人中心</title>
-    <link rel="stylesheet" href="plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="../plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/css.css">
 </head>
 <body style="background-color: #f7f7f7;">
 <!-- 导航栏 -->
@@ -36,6 +32,7 @@
             <li><a id="info" class="active" href="#">个人信息</a></li>
             <li><a id="my-product" href="#">我的发布</a></li>
             <li><a id="modify" href="#">修改信息</a></li>
+            <li><a id="my-purchase" href="#">我的订单</a></li>
         </ul>
     </div>
     <!-- 中间内容 -->
@@ -62,7 +59,7 @@
         <!-- 展示修改密码 -->
         <div class="modify-info" style="padding: 20px;display: none; ">
             <!-- 验证不通过则阻止向服务器提交数据 -->
-            <form action="updatePassword" method="post" onsubmit="return verify()">
+            <form action="updatePassword.servlet" method="post" onsubmit="return verify()">
                 <h2>输入新密码</h2>
                 <div class="name-detail" style=" border-bottom:1px solid #ddd;;padding-bottom: 20px;font-size: 20px;">
                     <input class="password1" name="newPassword" type="password">
@@ -90,24 +87,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                <%
-                    //个人中心-我的发布
-                    DBOperation<Commodity> db = new CommodityDAO();
-                    List<Commodity> launched_commodities_list = db.retrieve();
-                    user = (User) session.getAttribute("loginUser");
-                    for (Commodity c : launched_commodities_list) {
-                        if (c.getUid() == user.getUid()) {
-                %>
                 <tr>
-                    <td><h4 class="title"><%=c.getName()%>
-                    </h4></td>
-                    <td><span class="num"> <%=c.getPrice()%> </span></td>
+                    <td><h4 class="title">全新女装</h4></td>
+                    <td><span class="num">99元</span></td>
                     <td><span class="linkdel">删除</span></td>   <!--点击会触发删除事件，具体行为见底部js函数-->
                 </tr>
-                <%
-                        }
-                    }
-                %>
+                <tr>
+                    <td><h4 class="title">全新女装</h4></td>
+                    <td><span class="num">99元</span></td>
+                    <td><span class="linkdel">删除</span></td>   <!--点击会触发删除事件，具体行为见底部js函数-->
+                </tr>
+
                 </tbody>
 
             </table>
@@ -115,9 +105,7 @@
         </div>
 
     </div>
-  
-  
-  <!-- 展示我购买的商品 -->
+        <!-- 展示我购买的商品 -->
         <div class="my-purchase" style="padding: 20px;display: none; ">
             <table class="layui-layer-btn1">
                 <thead>
@@ -152,15 +140,33 @@
         </div>
 
 </div>
-  
+
+
+
+
+
+
     <!-- 底部 -->
 </div>
 <div class="footer">
-    <jsp:include page="copyright.jsp"></jsp:include>
+    <div class="w">
+        <div class="copyright" style="float: left; margin-top: 15px; font-size: 12px ;color: #7b7b7b;">
+            <h4>关于我们</h4> 西柚有余倾力打造的校园二手信息共享台。<br/>
+            师生将商品上传到 该 平台，用户可以选择自己需要的产品，平台免费使用。
+        </div>
+        <div class="links" style="float: right;margin-top: 15px; color: #7b7b7b; font-size: 12px;">
+            <h4>友情链接</h4>
+            <a href="#">西南石油大学</a>
+            <a href="#">学工系统</a>
+            <a href="#">四川省教育厅</a>
+            <a href="#">教务处</a>
+
+        </div>
+    </div>
 </div>
 
 </body>
-<script type="text/javascript" src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script>
     //页面切换
     $("#info").click(
@@ -177,9 +183,11 @@
             $(".my-purchase").css('display', 'none')
             //向服务器发送ajax请求获取该页数据！！
 
+
         }
     );
-    $("#modify").click(function () {
+    $("#modify").click(
+        function () {
         console.log("modify");
         $("#info").removeClass("pactive")
         $("#my-product").removeClass("pactive")
@@ -192,7 +200,8 @@
         //向服务器发送ajax请求获取该页数据！！
 
     });
-    $("#my-product").click(function () {
+    $("#my-product").click(
+        function () {
         console.log("my-product");
         $("#info").removeClass("pactive")
         $("#modify").removeClass("pactive")
@@ -205,6 +214,7 @@
         //向服务器发送ajax请求获取该页数据！！
 
     });
+
     $("#my-purchase").click(
         function () {
             console.log("my-purchase");
@@ -219,11 +229,6 @@
         //向服务器发送ajax请求获取该页数据！！
 
     });
-  
-    
-  
-  
-  
 
     //  //验证密码
     function verify() {
