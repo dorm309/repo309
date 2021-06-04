@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="plugins/layui-v2.6.7/layui/css/layui.css">
     <script src="plugins/layui-v2.6.7/layui/layui.js"></script>
 
-    <link rel="stylesheet" href="css/css.css"
+    <link rel="stylesheet" href="css/css.css">
 
 
 </head>
@@ -32,7 +32,7 @@
     <div class="index-nav">
         <ul>
             <li><a href="javascript:add()">发布</a></li>
-            <li><a href="wishlist.jsp">收藏夹</a></li>
+            <li><a href="wishlist.jsp">愿望单</a></li>
             <li><a href="#">待定功能</a></li>
         </ul>
     </div>

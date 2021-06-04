@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/css.css">
 </head>
-</head>
+
 <body style="background-color: #f7f7f7;">
 <!-- 顶部导航栏 -->
 <div class="regist-nav">
@@ -32,27 +32,6 @@
     <div style="margin-left:30px; ">
         <h2>收藏夹</h2>
     </div>
-    <ul>
-        <!-- 遍历展示收藏商品 -->
-        <!-- <li class="list"> -->
-        <!-- <input style="float: left; margin-left: -25px; margin-top: 30px;" type="checkbox"> -->
-        <!-- <a href="item.html">
-            <p class="title">商品名</p>
-            <span class="desc">这是商品描述信息</span>
-        </a>
-    </li>
-    <li class="list">
-        <a href="item.html">
-            <p class="title">商品名</p>
-            <span class="desc">这是商品描述信息</span>
-        </a>
-    </li>
-</ul> -->
-        <!-- <div class="button-container" style="margin: 30px 0 30px 850px;">
-                <button type="button" class="btn btn-danger" onclick="javascript:">
-                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除
-                </button>
-        </div> -->
         <table class="tb">
             <thead>
             <tr>
@@ -104,7 +83,7 @@
         //发送ajax请求
         //需要后端提供接口
     });
-    </script>
+</script>
 
 </body>
 </html>
