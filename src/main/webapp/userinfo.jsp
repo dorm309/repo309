@@ -94,20 +94,18 @@
                 <%
                     //个人中心-我的发布
                     DBOperation<Commodity> db = new CommodityDAO();
-                    List<Commodity> launched_commodities_list = db.retrieve();
+                    List<Commodity> launched_commodities_list = db.retrieve(request);
                     user = (User) session.getAttribute("loginUser");
-                    int i = 1;
                     for (Commodity c : launched_commodities_list) {
                         if (c.getUid() == user.getUid()) {
                 %>
                 <tr>
-                    <td><h4 class="commodityName" id="<%=i%>"><%=c.getName()%>
+                    <td><h4 class="commodityName" id="<%=c.getCid()%>"><%=c.getName()%>
                     </h4></td>
                     <td><span class="num"> <%=c.getPrice()%> </span></td>
-                    <td><span class="linkdel" id="<%=-i%>">删除</span></td>
+                    <td><span class="linkdel" id="<%=-c.getCid()%>">删除</span></td>
                 </tr>
                 <%
-                            i++;
                         }
                     }
                 %>
@@ -154,7 +152,6 @@
 
 
 <!-- 底部 -->
-</div>
 <div class="footer">
     <jsp:include page="copyright.jsp"></jsp:include>
 </div>
@@ -165,12 +162,12 @@
     //删除发布事件
     $(".linkdel").click(function () {
         console.log("删除该商品")
+        var cid = document.getElementById(Math.abs($(this).attr("id"))).id
         //发送ajax请求
-        var commodityName = document.getElementById(Math.abs($(this).attr("id")).toString()).innerHTML
         $.ajax({
             url: "DeleteCommodityServlet",
             type: "get",
-            data: {"name": commodityName},
+            data: {"cid": cid},
             dataType: "text",
             error: function () {
                 alert("删除失败")

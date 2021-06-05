@@ -278,13 +278,11 @@
                         class="layui-input">
                     <%
                         DBOperation<Category> categoryDB = new CategoryDAO();
-                        int i = 1;
-                        for (Category cat : categoryDB.retrieve()) {
+                        for (Category cat : categoryDB.retrieve(request)) {
                     %>
-                    <option value="<%=i%>"><%=cat.getName()%>
+                    <option value="<%=cat.getId()%>"><%=cat.getName()%>
                     </option>
                     <%
-                            i++;
                         }
                     %>
                 </select>
@@ -296,15 +294,15 @@
                 <textarea name="desc" placeholder="请输入描述内容" class="layui-textarea"></textarea>
             </div>
         </div>
-        <input type="file">
-        <%--        <!-- 图片上传 -->--%>
-        <%--        <div class="layui-form-item">--%>
-        <%--            <div class="layui-input-block">--%>
-        <%--                <button class="layui-btn" id="test1">--%>
-        <%--                    <i class="layui-icon">&#xe67c;</i>上传图片--%>
-        <%--                </button>--%>
-        <%--            </div>--%>
-        <%--        </div>--%>
+        <!-- 图片上传 -->
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="file">
+                <%--                        <button class="layui-btn" id="test1">--%>
+                <%--                            <i class="layui-icon">&#xe67c;</i>上传图片--%>
+                <%--                        </button>--%>
+            </div>
+        </div>
         <!-- 提交表单 -->
         <div class="layui-form-item">
             <div class="layui-input-block">
