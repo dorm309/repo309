@@ -15,6 +15,10 @@ import java.io.PrintWriter;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        /*
+            游客登入功能:（保留）
+         */
+
         //取用户输入信息
         request.setCharacterEncoding("utf-8");
         String username = request.getParameter("username");
@@ -32,12 +36,16 @@ public class LoginServlet extends HttpServlet {
         if (username.equals(""))
             out.write("<script>alert('用户名不能为空！'); window.location='login.jsp' </script>");
         if (userDB.get(username, request) == null)
-            out.write("<script>alert('未注册，请先注册'); window.location='regist.jsp' </script>");
+            out.write("<script>alert('该账号未注册，请先注册或以游客模式登入'); window.location='regist.jsp' </script>");
 
         User user = userDB.get(username, request);
 
         String username_dao = user.getUsername();
         String password_dao = user.getPassword();
+
+        /*
+            忘记密码功能:（保留）
+         */
 
         /*
             记住密码功能:

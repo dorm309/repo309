@@ -19,11 +19,16 @@ public class DBConnectionListener implements ServletContextListener, HttpSession
         /* This method is called when the servlet context is initialized(when the Web application is deployed). */
         DBUtil util = new DBUtil();
         Map map = new HashMap();
-        int connection_size = 10; //定义连接数目
 
+        //处理高并发动态开辟（保留）
+
+        //定义连接数目
+        final int connection_size = 30;
+
+        System.out.println("开始创建连接，默认开辟连接数：" + connection_size);
         for (int i = 1; i <= connection_size; i++) {
             Connection con = util.getCon();
-            System.out.println("服务器启动，自动创建" + i + "号连接对象： " + con);
+            System.out.println("创建" + i + "号连接对象： " + con);
             //true：初始状态下通道空闲
             map.put(con, true);
         }

@@ -28,7 +28,7 @@ public class UpdatePasswordServlet extends HttpServlet {
         if (!flag)
             out.write("<script>alert('密码修改失败，请重试！'); window.location='login.jsp' </script>");
 
-        out.write("<script>alert('密码修改成功，请重新登录'); window.location='login.jsp' </script>");
+        out.write("<script>alert('密码修改成功，正在前往登录页重新登录...'); window.location='login.jsp' </script>");
     }
 
     @Override

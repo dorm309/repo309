@@ -80,7 +80,7 @@
         var b = $("#inputPassword4").val();
         // console.log(b)
         if (a == '' || a != b) {
-            alert("两次输入的密码不一致，请重试！")
+            alert("输入有误，请重试！")
             return false;
         }
     }

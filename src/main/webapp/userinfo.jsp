@@ -170,10 +170,10 @@
             data: {"cid": cid},
             dataType: "text",
             error: function () {
-                alert("删除失败")
+                alert("删除失败，请重试！")
             },
             success: function () {
-                alert("删除成功")
+                alert("此商品发布记录删除成功")
                 parent.location.reload()
             },
         });
@@ -237,7 +237,7 @@
         var b = $(".password2").val();
         //console.log(b)
         if (a == '' || a != b) {
-            alert("输入有误！")
+            alert("输入有误，请重试！")
             return false;
         }
     }

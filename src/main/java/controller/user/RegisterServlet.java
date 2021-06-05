@@ -28,10 +28,10 @@ public class RegisterServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         boolean isUsernameDuplicated = (userDB.get(username, request) == null);
         if (!isUsernameDuplicated)
-            out.write("<script>alert('用户名已被使用，请重试！'); window.location='regist.jsp' </script>");
+            out.write("<script>alert('该用户名已被使用，请重试！'); window.location='regist.jsp' </script>");
         else {
             userDB.create(new User(username, password), request);
-            out.write("<script>alert('注册成功，正在前往登录页面..'); window.location='login.jsp' </script>");
+            out.write("<script>alert('注册成功，正在前往登录页面...'); window.location='login.jsp' </script>");
         }
 
         out.flush();

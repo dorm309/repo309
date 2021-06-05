@@ -35,13 +35,10 @@ public class LaunchCommodityServlet extends HttpServlet {
                 user.getUid(), commodity_name, contact, launchTime, commodity_price, description, category
         );
         DBOperation<Commodity> commodityDB = new CommodityDAO();
+        commodityDB.create(commodity, request);
 
         //转发请求处理图片 -- 在这里转发请求给AddImageServlet处理图片
 //        request.getRequestDispatcher("/addCImageCommodityServlet").forward(request, response);
-
-        //检查信息并发布
-
-        commodityDB.create(commodity, request);
     }
 
     @Override
