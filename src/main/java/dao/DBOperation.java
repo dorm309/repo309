@@ -2,23 +2,22 @@ package dao;
 
 import util.DBUtil;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface DBOperation<T> {
     /*
      * CRUD Operations
      */
-    DBUtil database = new DBUtil();
+    boolean create(T t, HttpServletRequest request);
 
-    boolean create(T t);
+    List<T> retrieve(HttpServletRequest request);
 
-    List<T> retrieve();
+    boolean update(T t, HttpServletRequest request);
 
-    boolean update(T t);
+    boolean delete(int id, HttpServletRequest request);
 
-    boolean delete(int id);
+    T get(int id, HttpServletRequest request);
 
-    T get(int id);
-
-    T get(String name);
+    T get(String name, HttpServletRequest request);
 }
