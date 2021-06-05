@@ -14,8 +14,8 @@ import java.io.PrintWriter;
 public class DeleteCImagesServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        CommodityImages ci = new CImagesDAO().get(id);
-        new CImagesDAO().delete(id);
+        CommodityImages ci = new CImagesDAO().get(id, request);
+        new CImagesDAO().delete(id, request);
 
         String imageFolder = request.getSession().getServletContext().getRealPath("image/commodity");
         File f = new File(imageFolder, ci.getId() + ".jpg");
@@ -23,7 +23,7 @@ public class DeleteCImagesServlet extends HttpServlet {
 
         //测试代码
         try {
-            PrintWriter pw= response.getWriter();
+            PrintWriter pw = response.getWriter();
             pw.println("<h1>删除了</h1>");
 
         } catch (IOException e) {

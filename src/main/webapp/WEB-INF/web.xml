@@ -5,21 +5,25 @@
 <web-app>
     <display-name>Archetype Created Web Application</display-name>
 
+    <listener>
+        <listener-class>listener.DBConnectionListener</listener-class>
+    </listener>
+
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
-        <servlet-class>controller.RegisterServlet</servlet-class>
+        <servlet-class>controller.user.RegisterServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>controller.LoginServlet</servlet-class>
+        <servlet-class>controller.user.LoginServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UpdatePasswordServlet</servlet-name>
-        <servlet-class>controller.UpdatePasswordServlet</servlet-class>
+        <servlet-class>controller.user.UpdatePasswordServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LaunchCommodityServlet</servlet-name>
-        <servlet-class>controller.LaunchCommodityServlet</servlet-class>
+        <servlet-class>controller.commodity.LaunchCommodityServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>GetCImagesServlet</servlet-name>
@@ -35,7 +39,7 @@
     </servlet>
     <servlet>
         <servlet-name>DeleteCommodityServlet</servlet-name>
-        <servlet-class>controller.DeleteCommodityServlet</servlet-class>
+        <servlet-class>controller.commodity.DeleteCommodityServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

@@ -80,11 +80,11 @@ public class AddCImagesServlet extends HttpServlet {
         //根据上传的参数生成productImage对象
         int cid = Integer.parseInt(params.get("cid"));
 
-        Commodity c=commodityDAO.get(cid);
-        CommodityImages ci=new CommodityImages();
+        Commodity c = commodityDAO.get(cid, request);
+        CommodityImages ci = new CommodityImages();
 
         ci.setCommodity(c);
-        cImagesDAO.create(ci);
+        cImagesDAO.create(ci, request);
 
         //生成文件
         String fileName = ci.getId() + ".jpg";

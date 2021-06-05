@@ -17,12 +17,12 @@ public class GetCImagesServlet extends HttpServlet {
 
 
         int cid = Integer.parseInt(request.getParameter("cid"));
-        Commodity c = new CommodityDAO().get(cid);
-        List<CommodityImages> ci = new CImagesDAO().list(c);
+        Commodity c = new CommodityDAO().get(cid, request);
+        List<CommodityImages> ci = new CImagesDAO().list(c, request);
         request.setAttribute("commodity", c);
         request.setAttribute("CommodityImages", ci);
         //这里写返回参数的jsp
-        request.getRequestDispatcher("testGet.jsp").forward(request,response);
+        request.getRequestDispatcher("testGet.jsp").forward(request, response);
 
     }
 

@@ -1,4 +1,4 @@
-package controller;
+package controller.user;
 
 import dao.DBOperation;
 import dao.UserDAO;
@@ -24,7 +24,7 @@ public class UpdatePasswordServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         DBOperation<User> userDB = new UserDAO();
-        boolean flag = userDB.update(user_update);
+        boolean flag = userDB.update(user_update, request);
         if (!flag)
             out.write("<script>alert('密码修改失败，请重试！'); window.location='login.jsp' </script>");
 

@@ -1,4 +1,4 @@
-package controller;
+package controller.commodity;
 
 import dao.CategoryDAO;
 import dao.CommodityDAO;
@@ -27,7 +27,7 @@ public class LaunchCommodityServlet extends HttpServlet {
         String contact = request.getParameter("contact");
         Date launchTime = DateUtil.d2t(new Date());
         String description = request.getParameter("desc");
-        Category category = new CategoryDAO().get(Integer.parseInt(request.getParameter("category")));
+        Category category = new CategoryDAO().get(Integer.parseInt(request.getParameter("category")), request);
 
         //保存商品信息到数据库
         User user = (User) request.getSession().getAttribute("loginUser");
@@ -36,13 +36,12 @@ public class LaunchCommodityServlet extends HttpServlet {
         );
         DBOperation<Commodity> commodityDB = new CommodityDAO();
 
-
-        //转发请求处理图片
-        request.getRequestDispatcher("/addCImageCommodityServlet").forward(request, response);
+        //转发请求处理图片 -- 在这里转发请求给AddImageServlet处理图片
+//        request.getRequestDispatcher("/addCImageCommodityServlet").forward(request, response);
 
         //检查信息并发布
 
-        commodityDB.create(commodity);
+        commodityDB.create(commodity, request);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package controller;
+package controller.commodity;
 
 import dao.CommodityDAO;
 import dao.DBOperation;
@@ -18,17 +18,15 @@ public class DeleteCommodityServlet extends HttpServlet {
         response.setContentType("text/html;charset=utf-8");
 
         //获取ajax传递参数
-        String commodity_name = request.getParameter("name");
-        System.out.println(commodity_name);
+        int cid = Integer.parseInt(request.getParameter("cid"));
 
         //比对数据库信息,删除商品
         DBOperation<Commodity> commodityDB = new CommodityDAO();
-        Commodity commodity_dao = commodityDB.get(commodity_name);
-
+        Commodity commodity_dao = commodityDB.get(cid, request);
         User user = (User) request.getSession().getAttribute("loginUser");
 
         if (commodity_dao.getUid() == user.getUid()) {
-            commodityDB.delete(commodity_dao.getCid());
+            commodityDB.delete(commodity_dao.getCid(), request);
         }
     }
 
