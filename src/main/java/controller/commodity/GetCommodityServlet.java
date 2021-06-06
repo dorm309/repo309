@@ -7,6 +7,9 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.IOException;
 
+/**
+ * 处理获取商品逻辑
+ */
 public class GetCommodityServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

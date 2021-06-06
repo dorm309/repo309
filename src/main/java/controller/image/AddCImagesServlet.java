@@ -24,6 +24,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/**
+ * 处理新增图片逻辑
+ */
 public class AddCImagesServlet extends HttpServlet {
     //解析上传
     public InputStream parseUpload(HttpServletRequest request, Map<String, String> params) {

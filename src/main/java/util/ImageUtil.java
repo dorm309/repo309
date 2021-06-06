@@ -6,6 +6,9 @@ import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * 提供图片工具类
+ */
 public class ImageUtil {
 
     public static BufferedImage change2jpg(File f) {

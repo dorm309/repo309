@@ -11,6 +11,9 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.IOException;
 
+/**
+ * 处理商品从愿望单删除逻辑
+ */
 public class DeleteWishlistServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

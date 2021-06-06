@@ -8,7 +8,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * 处理用户数据库操作逻辑
+ */
 public class UserDAO implements DBOperation<User> {
     DBUtil util = new DBUtil();
 

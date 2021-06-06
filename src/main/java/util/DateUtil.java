@@ -3,6 +3,9 @@ package util;
 import java.sql.Timestamp;
 import java.util.Date;
 
+/**
+ * 提供日期工具类
+ */
 public class DateUtil {
 
     public static java.sql.Timestamp d2t(java.util.Date d) {

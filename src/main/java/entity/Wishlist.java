@@ -1,5 +1,8 @@
 package entity;
 
+/**
+ * 提供愿望单实体类
+ */
 public class Wishlist {
     /*
     Definitions：愿望单所属用户id 卖家用户id 商品列表

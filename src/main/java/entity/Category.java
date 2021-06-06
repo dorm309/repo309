@@ -2,6 +2,9 @@ package entity;
 
 import java.util.List;
 
+/**
+ * 提供商品种类实体类
+ */
 public class Category {
     /*
     Definitions：种类名 种类id （所属种类）商品列表

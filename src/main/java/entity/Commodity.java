@@ -3,6 +3,9 @@ package entity;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 提供商品实体类
+ */
 public class Commodity {
     /*
     Definitions：商品id 所属卖家 联系方式 商品名称 创建日期 商品价格 商品图片 商品描述 商品种类

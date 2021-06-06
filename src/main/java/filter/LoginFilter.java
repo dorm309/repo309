@@ -7,6 +7,9 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * 处理登录筛选逻辑
+ */
 public class LoginFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
     }

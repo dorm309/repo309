@@ -11,6 +11,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * 处理删除图片逻辑
+ */
 public class DeleteCImagesServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));

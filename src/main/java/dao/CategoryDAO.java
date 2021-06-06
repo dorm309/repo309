@@ -8,6 +8,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 处理商品种类数据库操作逻辑
+ */
 public class CategoryDAO implements DBOperation<Category> {
     DBUtil util = new DBUtil();
 

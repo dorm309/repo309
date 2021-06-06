@@ -10,6 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 处理愿望单数据库操作逻辑
+ */
 public class WishlistDAO {
     DBUtil util = new DBUtil();
 

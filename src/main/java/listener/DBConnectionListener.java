@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+/**
+ * 处理数据库连接控制逻辑
+ */
 public class DBConnectionListener implements ServletContextListener, HttpSessionListener, HttpSessionAttributeListener {
 
     public DBConnectionListener() {

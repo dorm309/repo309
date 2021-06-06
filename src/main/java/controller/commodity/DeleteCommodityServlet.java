@@ -9,6 +9,9 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.IOException;
 
+/**
+ * 处理删除商品逻辑
+ */
 public class DeleteCommodityServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

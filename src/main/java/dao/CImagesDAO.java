@@ -9,6 +9,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 处理商品图片数据库操作逻辑
+ */
 public class CImagesDAO implements DBOperation<CommodityImages> {
     DBUtil util = new DBUtil();
 

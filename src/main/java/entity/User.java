@@ -1,5 +1,8 @@
 package entity;
 
+/**
+ * 提供用户实体类
+ */
 public class User {
     /*
     Definitions：用户id 用户名 密码

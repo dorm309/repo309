@@ -6,6 +6,9 @@ import java.sql.*;
 import java.util.Iterator;
 import java.util.Map;
 
+/**
+ * 提供数据库工具类
+ */
 public class DBUtil {
     /*
     Definitions：数据库连接 预处理语句 IP地址 端口 数据库名称 编码 用户名 密码

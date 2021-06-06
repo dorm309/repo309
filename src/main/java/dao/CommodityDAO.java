@@ -9,7 +9,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * 处理商品数据库操作逻辑
+ */
 public class CommodityDAO implements DBOperation<Commodity> {
     DBUtil util = new DBUtil();
 
