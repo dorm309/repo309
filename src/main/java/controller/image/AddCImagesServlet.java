@@ -97,8 +97,7 @@ public class AddCImagesServlet extends HttpServlet {
         //复制文件
         try {
             if (null != is && 0 != is.available()) {
-                try (FileOutputStream fos = new FileOutputStream(f))
-                {
+                try (FileOutputStream fos = new FileOutputStream(f)) {
                     byte[] bytes = new byte[1024 * 1024];
                     int length = 0;
                     while (-1 != (length = is.read(bytes))) {
@@ -117,6 +116,5 @@ public class AddCImagesServlet extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }

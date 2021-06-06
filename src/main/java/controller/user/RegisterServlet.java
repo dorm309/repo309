@@ -17,14 +17,9 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        request.setCharacterEncoding("utf-8");
 
         //保存账密到数据库
         DBOperation<User> userDB = new UserDAO();
-
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html; charset=utf-8");
-
         PrintWriter out = response.getWriter();
         boolean isUsernameDuplicated = (userDB.get(username, request) == null);
         if (!isUsernameDuplicated)

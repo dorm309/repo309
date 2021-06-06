@@ -12,11 +12,6 @@ import java.io.IOException;
 public class DeleteCommodityServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("utf-8");
-
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=utf-8");
-
         //获取ajax传递参数
         int cid = Integer.parseInt(request.getParameter("cid"));
 

@@ -15,24 +15,13 @@ import java.io.PrintWriter;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        /*
-            游客登入功能:（保留）
-         */
-
         //取用户输入信息
-        request.setCharacterEncoding("utf-8");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
         //比对数据库信息
         DBOperation<User> userDB = new UserDAO();
-
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html; charset=utf-8");
-
         PrintWriter out = response.getWriter();
-
-        //处理异常输入
         if (username.equals(""))
             out.write("<script>alert('用户名不能为空！'); window.location='login.jsp' </script>");
         if (userDB.get(username, request) == null)
@@ -74,7 +63,7 @@ public class LoginServlet extends HttpServlet {
             response.addCookie(cookie_username);
             response.addCookie(cookie_password);
 
-            //配置登录用户个人信息
+            //配置登录信息，为合法用户发放令牌
             HttpSession session = request.getSession();
             session.setAttribute("loginUser", user);
 

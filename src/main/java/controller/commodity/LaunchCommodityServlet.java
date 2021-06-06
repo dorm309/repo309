@@ -19,8 +19,6 @@ import java.util.Date;
 public class LaunchCommodityServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("utf-8");
-
         //取用户输入信息
         String commodity_name = request.getParameter("title");
         float commodity_price = Float.parseFloat(request.getParameter("price"));

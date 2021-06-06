@@ -27,7 +27,6 @@ public class DeleteCImagesServlet extends HttpServlet {
             pw.println("<h1>删除了</h1>");
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
