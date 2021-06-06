@@ -44,5 +44,8 @@ public class LoginFilter implements Filter {
 
         PrintWriter out = response.getWriter();
         out.write("<script>alert('未登录，请先登录！'); window.location='login.jsp'</script>");
+
+        out.flush();
+        out.close();
     }
 }

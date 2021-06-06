@@ -10,6 +10,8 @@
 <%@ page import="dao.DBOperation" %>
 <%@ page import="entity.Category" %>
 <%@ page import="dao.CategoryDAO" %>
+<%@ page import="entity.Commodity" %>
+<%@ page import="dao.CommodityDAO" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,95 +101,24 @@
     </div>
     <div class="bbd ">
         <ul class="clearfix">
+            <%
+                DBOperation<Commodity> commodityDB = new CommodityDAO();
+                for (Commodity c : commodityDB.retrieve(request)) { %>
             <li class="item">
-                <a href="item.jsp">
+                <a href="item.jsp" id="<%=c.getCid()%>" class="getCommodityInfo">
+                    <%--                    在这里替换图片内容！！--%>
                     <img src="https://img.alicdn.com/imgextra/i2/14219353/O1CN01PuAfdi2Ixj0eYycBd_!!0-saturn_solar.jpg_468x468q75.jpg_.webp"
                          width="228" height="151" alt="">
-                    <h3 class="title">女装</h3>
-                    <p class="desc">全新女装，仅仅试穿</p>
-                    <p class="price"><span class="num">100</span> <span>元</span></p>
+                    <h3 class="title"><%=c.getName()%>
+                    </h3>
+                    <p class="desc"><%=c.getDescription()%>
+                    </p>
+                    <p class="price"><span class="num"><%=c.getPrice()%></span> <span>元</span></p>
                 </a>
             </li>
-            <li class="item">
-                <a href="#">
-                    <img src="//cdn.cnbj0.fds.api.mi-img.com/b2c-miapp-a1/T1r_x_BgLT1RXrhCrK.jpg?thumb=1&w=250&h=250"
-                         width="228" height="151" alt="">
-                    <h3 class="title">小米平衡车</h3>
-                    <p class="desc">九成新，充电二十次</p>
-                    <p class="price"><span class="num">900</span> <span>元</span></p>
-                </a>
-            </li>
-            <li class="item">
-                <a href="#">
-                    <img src="//cdn.cnbj1.fds.api.mi-img.com/mi-mall/9eb0178e3bfeb7d170edd641fb4be4bc.jpg?thumb=1&w=250&h=250&f=webp&q=90"
-                         width="228" height="151" alt="">
-                    <h3 class="title">女装</h3>
-                    <p class="desc">全新女装，仅仅试穿</p>
-                    <p class="price"><span class="num">100</span> <span>元</span></p>
-                </a>
-            </li>
-            <li class="item">
-                <a href="#">
-                    <img src="//cdn.cnbj1.fds.api.mi-img.com/mi-mall/f8fde8a877fd4b12ad88119d9b6bc061.jpg?thumb=1&w=250&h=250&f=webp&q=90"
-                         width="228" height="151" alt="">
-                    <h3 class="title">女装</h3>
-                    <p class="desc">全新女装，仅仅试穿</p>
-                    <p class="price"><span class="num">100</span> <span>元</span></p>
-                </a>
-            </li>
-            <li class="item">
-                <a href="#">
-                    <img src="image/product.png" width="228" height="151" alt="">
-                    <h3 class="title">女装</h3>
-                    <p class="desc">全新女装，仅仅试穿</p>
-                    <p class="price"><span class="num">100</span> <span>元</span></p>
-                </a>
-            </li>
-            <li class="item">
-                <a href="#">
-                    <img src="//gw.alicdn.com/bao/uploaded/i1/751688154/TB1s58pfoOWBKNjSZKzXXXfWFXa_!!751688154-0-item_pic.jpg"
-                         width="228" height="151" alt="">
-                    <h3 class="title">女装</h3>
-                    <p class="desc">全新女装，仅仅试穿</p>
-                    <p class="price"><span class="num">100</span> <span>元</span></p>
-                </a>
-            </li>
-            <li class="item">
-                <a href="#">
-                    <img src="//cdn.cnbj1.fds.api.mi-img.com/mi-mall/f8fde8a877fd4b12ad88119d9b6bc061.jpg?thumb=1&w=250&h=250&f=webp&q=90"
-                         width="228" height="151" alt="">
-                    <h3 class="title">女装</h3>
-                    <p class="desc">全新女装，仅仅试穿</p>
-                    <p class="price"><span class="num">100</span> <span>元</span></p>
-                </a>
-            </li>
-            <li class="item">
-                <a href="#">
-                    <img src="//gw.alicdn.com/bao/uploaded/i1/757548275/TB1CfGRekfb_uJkSne1XXbE4XXa_!!0-item_pic.jpg"
-                         width="228" height="151" alt="">
-                    <h3 class="title">女装</h3>
-                    <p class="desc">全新女装，仅仅试穿</p>
-                    <p class="price"><span class="num">100</span> <span>元</span></p>
-                </a>
-            </li>
-            <li class="item">
-                <a href="#">
-                    <img src="//gw.alicdn.com/bao/uploaded/i1/757548275/TB1CfGRekfb_uJkSne1XXbE4XXa_!!0-item_pic.jpg"
-                         width="228" height="151" alt="">
-                    <h3 class="title">女装</h3>
-                    <p class="desc">全新女装，仅仅试穿</p>
-                    <p class="price"><span class="num">100</span> <span>元</span></p>
-                </a>
-            </li>
-            <li class="item">
-                <a href="#">
-                    <img src="//gw.alicdn.com/bao/uploaded/i1/751688154/TB1s58pfoOWBKNjSZKzXXXfWFXa_!!751688154-0-item_pic.jpg"
-                         width="228" height="151" alt="">
-                    <h3 class="title">女装</h3>
-                    <p class="desc">全新女装，仅仅试穿</p>
-                    <p class="price"><span class="num">100</span> <span>元</span></p>
-                </a>
-            </li>
+            <%
+                }
+            %>
         </ul>
     </div>
 </div>
@@ -196,6 +127,19 @@
 </div>
 
 <script>
+    //获取商品信息页面
+    $(".getCommodityInfo").click(function () {
+        console.log("获取该商品信息页面")
+        var cid = document.getElementById($(this).attr("id")).id
+        //发送ajax请求
+        $.ajax({
+            url: "GetCommodityServlet",
+            type: "get",
+            data: {"cid": cid},
+            dataType: "text",
+        });
+    });
+
     // 搜索事件
     $("#search-btn").click(function () {
         var keyword = $("#keyword").val();
@@ -277,6 +221,7 @@
                         autocomplete="off"
                         class="layui-input">
                     <%
+                        //遍历获取商品种类，显示于下拉多选框
                         DBOperation<Category> categoryDB = new CategoryDAO();
                         for (Category cat : categoryDB.retrieve(request)) {
                     %>

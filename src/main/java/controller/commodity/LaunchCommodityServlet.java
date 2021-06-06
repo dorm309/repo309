@@ -11,6 +11,7 @@ import util.DateUtil;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 
 /**
@@ -37,6 +38,12 @@ public class LaunchCommodityServlet extends HttpServlet {
 
         //转发请求处理图片 -- 在这里转发请求给AddImageServlet处理图片
 //        request.getRequestDispatcher("/addCImageCommodityServlet").forward(request, response);
+
+        PrintWriter out = response.getWriter();
+        out.write("<script>alert('商品发布成功！'); window.location='index.jsp' </script>");
+
+        out.flush();
+        out.close();
     }
 
     @Override

@@ -48,6 +48,10 @@
         <servlet-class>controller.image.DeleteCImagesServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>GetCommodityServlet</servlet-name>
+        <servlet-class>controller.commodity.GetCommodityServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>DeleteCommodityServlet</servlet-name>
         <servlet-class>controller.commodity.DeleteCommodityServlet</servlet-class>
     </servlet>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>DeleteCImagesServlet</servlet-name>
         <url-pattern>/DeleteCImagesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetCommodityServlet</servlet-name>
+        <url-pattern>/GetCommodityServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteCommodityServlet</servlet-name>

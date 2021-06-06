@@ -29,6 +29,9 @@ public class UpdatePasswordServlet extends HttpServlet {
         session.removeAttribute("loginUser");
 
         out.write("<script>alert('密码修改成功，正在前往登录页重新登录...'); window.location='login.jsp' </script>");
+
+        out.flush();
+        out.close();
     }
 
     @Override

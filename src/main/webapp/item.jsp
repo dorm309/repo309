@@ -1,4 +1,4 @@
-<%--
+<%@ page import="entity.Commodity" %><%--
   Created by IntelliJ IDEA.
   User: Vincent
   Date: 2021/5/24
@@ -32,13 +32,16 @@
                 src="https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1550480620.30111865.jpg" width="560"
                 height="560" alt=""></div>
         <div class="info">
-            <div class="title"><h2>高速无线充套装</h2></div>
-            <div class="desc"> 一般描述里面都要贴一些宝贝的详细照片 然后就是写一些宝贝的的提示一般描述里面都要贴一些宝贝的详细照片 然一般描述里面都要贴一些宝贝的详细照片 然后就是写一些宝贝的的提示
-                比如说如果你那个东后就是写一些宝贝的的提示 比如说如果你那个东 比如说如果你那个东西有色差 你可以写如果买家介意有色差的请不拍 因为有的刁难的买家买了东西觉得不好会给你差评 所以一定要把自己的东西介绍好
+            <%
+                Commodity commodity = (Commodity) session.getAttribute("commodity");
+            %>
+            <div class="title"><h2><%=commodity.getName()%>
+            </h2></div>
+            <div class="desc"><%=commodity.getDescription()%>
             </div>
-            <div class="price"><span class="num">99</span><span>元</span></div>
+            <div class="price"><span class="num"><%=commodity.getPrice()%></span><span>元</span></div>
             <div class="user"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> 联系方式：<span
-                    id="phonenum">110</span></div>
+                    id="phonenum"><%=commodity.getContact()%></span></div>
             <hr>
             <form class="want" action="#">
                 <!-- 点击按钮会触发收藏事件，具体见底部js函数 -->
