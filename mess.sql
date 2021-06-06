@@ -11,7 +11,7 @@
  Target Server Version : 50715
  File Encoding         : 65001
 
- Date: 06/06/2021 14:38:30
+ Date: 06/06/2021 16:27:31
 */
 
 SET NAMES utf8mb4;
@@ -170,9 +170,15 @@ VALUES (3, 'whatthehell', 'workwork');
 DROP TABLE IF EXISTS `wishlist`;
 CREATE TABLE `wishlist`
 (
+    `id`  int(11) NOT NULL,
     `uid` int(11) NOT NULL DEFAULT 0,
     `cid` int(11) NOT NULL DEFAULT 0,
-    PRIMARY KEY (`uid`, `cid`) USING BTREE
+    PRIMARY KEY (`uid`, `cid`) USING BTREE,
+    INDEX `wishlist_commodity_cid_fk` (`cid`) USING BTREE,
+    INDEX `wishlist_user_uid_fk` (`id`) USING BTREE,
+    CONSTRAINT `wishlist_user_uid_fk` FOREIGN KEY (`id`) REFERENCES `user` (`uid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+    CONSTRAINT `wishlist_commodity_cid_fk` FOREIGN KEY (`cid`) REFERENCES `commodity` (`cid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+    CONSTRAINT `wishlist_commodity_uid_fk` FOREIGN KEY (`uid`) REFERENCES `commodity` (`uid`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB
   CHARACTER SET = utf8
   COLLATE = utf8_general_ci
@@ -181,5 +187,17 @@ CREATE TABLE `wishlist`
 -- ----------------------------
 -- Records of wishlist
 -- ----------------------------
+INSERT INTO `wishlist`
+VALUES (1, 2, 4);
+INSERT INTO `wishlist`
+VALUES (1, 3, 8);
+INSERT INTO `wishlist`
+VALUES (1, 3, 10);
+INSERT INTO `wishlist`
+VALUES (2, 1, 2);
+INSERT INTO `wishlist`
+VALUES (3, 1, 1);
+INSERT INTO `wishlist`
+VALUES (3, 2, 5);
 
 SET FOREIGN_KEY_CHECKS = 1;
