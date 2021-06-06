@@ -122,9 +122,11 @@
         </ul>
     </div>
 </div>
-<div class="footer">
-    <jsp:include page="copyright.jsp"></jsp:include>
-</div>
+
+<!-- 底部 -->
+<jsp:include page="copyright.jsp">
+    <jsp:param name="copyright" value="footer"/>
+</jsp:include>
 
 <script>
     //获取商品信息页面

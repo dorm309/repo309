@@ -52,10 +52,12 @@
         </div>
     </div>
 </div>
+
 <!-- 底部 -->
-<div class="footer">
-    <jsp:include page="copyright.jsp"></jsp:include>
-</div>
+<jsp:include page="copyright.jsp">
+    <jsp:param name="copyright" value="footer"/>
+</jsp:include>
+
 <script>
     //收藏事件
     $(".btn-success").click(function () {

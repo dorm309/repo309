@@ -150,11 +150,10 @@
     </div>
 </div>
 
-
 <!-- 底部 -->
-<div class="footer">
-    <jsp:include page="copyright.jsp"></jsp:include>
-</div>
+<jsp:include page="copyright.jsp">
+    <jsp:param name="copyright" value="footer"/>
+</jsp:include>
 
 </body>
 <script type="text/javascript" src="./plugins/jQuery/jquery-2.2.3.min.js"></script>

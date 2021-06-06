@@ -81,10 +81,11 @@
     </table>
 
 </div>
+
 <!-- 底部 -->
-<div class="footer">
-    <jsp:include page="copyright.jsp"></jsp:include>
-</div>
+<jsp:include page="copyright.jsp">
+    <jsp:param name="copyright" value="footer"/>
+</jsp:include>
 
 <script>
     //取消收藏事件
