@@ -135,6 +135,7 @@ public class CommodityDAO implements DBOperation<Commodity> {
                 commodity.setCid(rs.getInt("cid"));
                 commodity.setUid(rs.getInt("uid"));
                 commodity.setName(rs.getString("name"));
+                commodity.setContact(rs.getString("contact"));
                 commodity.setCreateDate(DateUtil.t2d(rs.getTimestamp("date")));
                 commodity.setPrice(rs.getFloat("price"));
                 commodity.setDescription(rs.getString("description"));
