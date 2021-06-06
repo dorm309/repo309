@@ -11,7 +11,7 @@
  Target Server Version : 50715
  File Encoding         : 65001
 
- Date: 04/06/2021 20:51:30
+ Date: 06/06/2021 14:38:30
 */
 
 SET NAMES utf8mb4;
@@ -49,7 +49,7 @@ CREATE TABLE `category`
     `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 6
+  AUTO_INCREMENT = 7
   CHARACTER SET = utf8
   COLLATE = utf8_general_ci
   ROW_FORMAT = COMPACT;
@@ -67,6 +67,8 @@ INSERT INTO `category`
 VALUES (4, '生活用品');
 INSERT INTO `category`
 VALUES (5, '电子产品');
+INSERT INTO `category`
+VALUES (6, '虚拟商品');
 
 -- ----------------------------
 -- Table structure for commodity
@@ -86,7 +88,7 @@ CREATE TABLE `commodity`
     INDEX `commodity_category_id_fk` (`category`) USING BTREE,
     INDEX `commodity_user_uid_fk` (`uid`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 230
+  AUTO_INCREMENT = 12
   CHARACTER SET = utf8
   COLLATE = utf8_general_ci
   ROW_FORMAT = COMPACT;
@@ -95,11 +97,25 @@ CREATE TABLE `commodity`
 -- Records of commodity
 -- ----------------------------
 INSERT INTO `commodity`
-VALUES (1, 1, '艾瑞克', '1234567', '2021-06-04 20:20:30', 123.00, '测试测试', 5);
+VALUES (1, 1, '艾利克斯', 'v社', '2021-06-05 12:27:05', 198.00, '88', 5);
 INSERT INTO `commodity`
 VALUES (2, 1, '计算机基础', 'qq：1872375096', '2021-06-04 20:22:17', 28.00, '九成新', 2);
 INSERT INTO `commodity`
-VALUES (3, 1, '波司登冲锋衣', 'wx：大菠萝', '2021-06-04 20:37:46', 1298.00, '生活费，谢谢', 1);
+VALUES (3, 1, '波司登', 'wx：daboluo', '2021-06-05 12:27:36', 1298.98, '没钱了，换生活费', 1);
+INSERT INTO `commodity`
+VALUES (4, 2, 'ipad2019', 'tel：117263554627', '2021-06-06 13:34:26', 1999.99, '换2020，要的私', 5);
+INSERT INTO `commodity`
+VALUES (5, 2, '秋裤', 'wx:silkroad', '2021-06-06 13:35:36', 0.50, '诶，就是玩', 1);
+INSERT INTO `commodity`
+VALUES (6, 2, '挂坠一条', 'wx:silkroad', '2021-06-06 13:39:22', 12.30, '一图流', 3);
+INSERT INTO `commodity`
+VALUES (7, 2, '卷纸2箱', 'wx:silkroad', '2021-06-06 13:40:12', 20.00, '买多了2333，出', 4);
+INSERT INTO `commodity`
+VALUES (8, 3, '守望先锋数字典藏版cdkey', 'wx:wow', '2021-06-06 13:42:59', 128.00, '便宜出', 6);
+INSERT INTO `commodity`
+VALUES (9, 3, '计算机网络：自顶而下方法', 'wx:wow', '2021-06-06 13:43:58', 20.00, '八成新，价格可私', 2);
+INSERT INTO `commodity`
+VALUES (10, 3, '西南石油大学明信片', 'wx:wow', '2021-06-06 13:44:35', 10.00, '来嘛', 3);
 
 -- ----------------------------
 -- Table structure for images
@@ -144,9 +160,9 @@ CREATE TABLE `user`
 INSERT INTO `user`
 VALUES (1, 'demo', 'demo');
 INSERT INTO `user`
-VALUES (2, 'xiaoxiao', 'dada');
+VALUES (2, 'xiaoxin', 'xiao');
 INSERT INTO `user`
-VALUES (3, '123', '123');
+VALUES (3, 'whatthehell', 'workwork');
 
 -- ----------------------------
 -- Table structure for wishlist
