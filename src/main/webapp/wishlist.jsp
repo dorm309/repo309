@@ -7,6 +7,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ page import="dao.WishlistDAO" %>
+<%@ page import="entity.Wishlist" %>
+<%@ page import="java.util.List" %>
+<%@ page import="entity.User" %>
+<%@ page import="entity.Commodity" %>
+<%@ page import="dao.CommodityDAO" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,43 +36,49 @@
 <!-- 收藏夹列表 -->
 <div class="container item-w">
     <div style="margin-left:30px; ">
-        <h2>收藏夹</h2>
+        <%
+            User user = (User) session.getAttribute("loginUser");
+        %>
+        <h2><%=user.getUsername()%>的收藏夹</h2>
     </div>
-        <table class="tb">
-            <thead>
-            <tr>
-                <th style="width: 60%;">商品名</th>
-                <th style="width: 20%;">价格</th>
-                <th style="width: 20%;">操作</th>
+    <table class="tb">
+        <thead>
+        <tr>
+            <th style="width: 60%;">商品名</th>
+            <th style="width: 20%;">价格</th>
+            <th style="width: 20%;">操作</th>
 
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>
-                    <a style="display: block;" href="item.jsp">
-                        <h3 class="title">这是商品名称</h3>
-                        <div style="color:  #b0b0b0;" class="desc">这是商品的描述</div>
-                    </a>
-                </td>
-                <td><span class="num">99元</span></td>
-                <td><span class="linkdel">取消收藏</span></td>   <!--点击会触发取消收藏事件，具体行为见底部js函数-->
-            </tr>
-            <tr>
-                <td>
-                    <a style="display: block;" href="item.jsp">
-                        <h3 class="title">这是商品名称</h3>
-                        <div style="color:  #b0b0b0;" class="desc">这是商品的描述</div>
-                    </a>
-                </td>
-                <td><span class="num">99元</span></td>
-                <td><span class="linkdel">取消收藏</span></td>   <!--点击会触发取消收藏事件，具体行为见底部js函数-->
-            </tr>
+        </tr>
+        </thead>
+        <tbody>
+        <%
+            //愿望单-收藏夹
+            WishlistDAO wishlistDB = new WishlistDAO();
+            List<Wishlist> wishlist = wishlistDB.retrieve(request);
+            for (Wishlist w : wishlist) {
+                if (w.getId() == user.getUid()) {
+                    Commodity commodity = new CommodityDAO().get(w.getCid(), request);
+        %>
+        <tr>
+            <td>
+                <a style="display: block;" href="item.jsp" id="<%=commodity.getCid()%>" class="getCommodityInfo">
+                    <h3 class="title" id="<%=commodity.getCid()%>"><%=commodity.getName()%>
+                    </h3>
+                    <div style="color:  #b0b0b0;" class="desc"><%=commodity.getDescription()%>
+                    </div>
+                </a>
+            </td>
+            <td><span class="num"><%=commodity.getPrice()%></span></td>
+            <td><span class="linkdel_wishlist" id="<%=-commodity.getCid()%>">取消收藏</span></td>
+            <!--点击会触发取消收藏事件，具体行为见底部js函数-->
+        </tr>
+        <%
+                }
+            }
+        %>
+        </tbody>
 
-            </tbody>
-
-        </table>
-
+    </table>
 
 </div>
 <!-- 底部 -->
@@ -75,13 +87,37 @@
 </div>
 
 <script>
-    $(".linkdel").click(function () {
+    //取消收藏事件
+    $(".linkdel_wishlist").click(function () {
         console.log("取消收藏该商品")
-        //获取取消商品需要的主键
-
-
+        var cid = document.getElementById(Math.abs($(this).attr("id"))).id
         //发送ajax请求
-        //需要后端提供接口
+        $.ajax({
+            url: "DeleteWishlistServlet",
+            type: "get",
+            data: {"cid": cid},
+            dataType: "text",
+            error: function () {
+                alert(cid + "取消收藏失败，请重试！")
+            },
+            success: function () {
+                alert("此商品取消收藏成功")
+                parent.location.reload()
+            },
+        });
+    });
+
+    //获取商品信息页面
+    $(".getCommodityInfo").click(function () {
+        console.log("获取该商品信息页面")
+        var cid = document.getElementById($(this).attr("id")).id
+        //发送ajax请求
+        $.ajax({
+            url: "GetCommodityServlet",
+            type: "get",
+            data: {"cid": cid},
+            dataType: "text",
+        });
     });
 </script>
 
