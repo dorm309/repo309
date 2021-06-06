@@ -56,9 +56,14 @@
         <servlet-class>controller.commodity.DeleteCommodityServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>AddWishlistServlet</servlet-name>
+        <servlet-class>controller.wishlist.AddWishlistServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>DeleteWishlistServlet</servlet-name>
         <servlet-class>controller.wishlist.DeleteWishlistServlet</servlet-class>
     </servlet>
+
 
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
@@ -95,6 +100,10 @@
     <servlet-mapping>
         <servlet-name>DeleteCommodityServlet</servlet-name>
         <url-pattern>/DeleteCommodityServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddWishlistServlet</servlet-name>
+        <url-pattern>/AddWishlistServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteWishlistServlet</servlet-name>

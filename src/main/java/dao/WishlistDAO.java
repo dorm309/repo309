@@ -77,4 +77,24 @@ public class WishlistDAO {
 
         return result;
     }
+
+    public boolean isExist(Wishlist wishlist, HttpServletRequest request) {
+        String sql = "select * from wishlist where id = " + wishlist.getId() +
+                " and uid = " + wishlist.getUid()
+                + " and cid = " + wishlist.getCid();
+        boolean result = false;
+        Wishlist w = null;
+        try (PreparedStatement ps = util.createStatement(sql, request)) {
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next())
+                result = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            util.close(request);
+        }
+
+        return result;
+    }
 }

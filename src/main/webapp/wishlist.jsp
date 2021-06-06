@@ -98,7 +98,7 @@
             data: {"cid": cid},
             dataType: "text",
             error: function () {
-                alert(cid + "取消收藏失败，请重试！")
+                alert("取消收藏失败，请重试！")
             },
             success: function () {
                 alert("此商品取消收藏成功")

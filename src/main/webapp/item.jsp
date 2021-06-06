@@ -43,9 +43,9 @@
             <div class="user"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> 联系方式：<span
                     id="phonenum"><%=commodity.getContact()%></span></div>
             <hr>
-            <form class="want" action="#">
+            <form class="want">
                 <!-- 点击按钮会触发收藏事件，具体见底部js函数 -->
-                <button type="button" class="btn btn-success" id="want">
+                <button type="button" class="btn btn-success" id="<%=commodity.getCid()%>">
                     <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 收藏
                 </button>
             </form>
@@ -57,13 +57,24 @@
     <jsp:include page="copyright.jsp"></jsp:include>
 </div>
 <script>
-
     //收藏事件
-    $("#want").click(function () {
+    $(".btn-success").click(function () {
         console.log("收藏事件触发了")
-        //需要获取商品主键并向服务器发起请求
-    })
+        var cid = document.getElementById($(this).attr("id")).id
+        //发送ajax请求
+        $.ajax({
+            url: "AddWishlistServlet",
+            type: "get",
+            data: {"cid": cid},
+            dataType: "text",
+            success: function (data) {
+                if (data == "true")
+                    alert("该商品已在愿望单中")
+                else
+                    alert("加入愿望单成功")
+            }
+        });
+    });
 </script>
-.
 </body>
 </html>
