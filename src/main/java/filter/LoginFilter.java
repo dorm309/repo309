@@ -22,7 +22,7 @@ public class LoginFilter implements Filter {
 
         //统一页面编码格式
         req.setCharacterEncoding("utf-8");
-        resp.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("utf-8");
         resp.setContentType("text/html; charset=utf-8");
 
         //动态获取Web项目名
@@ -31,14 +31,14 @@ public class LoginFilter implements Filter {
         //case 1：请求登录相关文件
         String uri = req.getRequestURI();
         if (uri.contains("login") || webapp_name.equals(uri)) {
-            chain.doFilter(req, resp);
+            chain.doFilter(request, response);
             return;
         }
 
         //case 2：请求其他文件
         session = req.getSession(false);
         if (session.getAttribute("loginUser") != null) {
-            chain.doFilter(req, resp);
+            chain.doFilter(request, response);
             return;
         }
 
