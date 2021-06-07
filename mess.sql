@@ -11,7 +11,7 @@
  Target Server Version : 50715
  File Encoding         : 65001
 
- Date: 06/06/2021 19:10:00
+ Date: 07/06/2021 12:28:03
 */
 
 SET NAMES utf8mb4;
@@ -88,7 +88,7 @@ CREATE TABLE `commodity`
     INDEX `commodity_category_id_fk` (`category`) USING BTREE,
     INDEX `commodity_user_uid_fk` (`uid`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 12
+  AUTO_INCREMENT = 15
   CHARACTER SET = utf8
   COLLATE = utf8_general_ci
   ROW_FORMAT = COMPACT;
@@ -103,7 +103,7 @@ VALUES (2, 1, '计算机基础', 'qq：1872375096', '2021-06-04 20:22:17', 28.00
 INSERT INTO `commodity`
 VALUES (3, 1, '波司登', 'wx：daboluo', '2021-06-05 12:27:36', 1298.98, '没钱了，换生活费', 1);
 INSERT INTO `commodity`
-VALUES (4, 2, 'ipad2019', 'tel：117263554627', '2021-06-06 13:34:26', 1999.99, '换2020，要的私', 5);
+VALUES (4, 2, 'ipad2019', 'tel：17263554627', '2021-06-06 13:34:26', 1999.99, '换2020，要的私', 5);
 INSERT INTO `commodity`
 VALUES (5, 2, '秋裤', 'wx:silkroad', '2021-06-06 13:35:36', 0.50, '诶，就是玩', 1);
 INSERT INTO `commodity`
@@ -158,7 +158,7 @@ CREATE TABLE `user`
 -- Records of user
 -- ----------------------------
 INSERT INTO `user`
-VALUES (1, 'demo', 'demo');
+VALUES (1, 'demo', '123');
 INSERT INTO `user`
 VALUES (2, 'xiaoxin', 'xiao');
 INSERT INTO `user`
@@ -177,7 +177,6 @@ CREATE TABLE `wishlist`
     INDEX `wishlist_commodity_cid_fk` (`cid`) USING BTREE,
     INDEX `wishlist_commodity_uid_fk` (`uid`) USING BTREE,
     CONSTRAINT `wishlist_commodity_cid_fk` FOREIGN KEY (`cid`) REFERENCES `commodity` (`cid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-    CONSTRAINT `wishlist_commodity_uid_fk` FOREIGN KEY (`uid`) REFERENCES `commodity` (`uid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
     CONSTRAINT `wishlist_user_uid_fk` FOREIGN KEY (`id`) REFERENCES `user` (`uid`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB
   CHARACTER SET = gb2312
@@ -188,19 +187,9 @@ CREATE TABLE `wishlist`
 -- Records of wishlist
 -- ----------------------------
 INSERT INTO `wishlist`
-VALUES (2, 1, 1);
-INSERT INTO `wishlist`
-VALUES (3, 1, 2);
-INSERT INTO `wishlist`
 VALUES (1, 2, 4);
 INSERT INTO `wishlist`
-VALUES (3, 2, 4);
-INSERT INTO `wishlist`
-VALUES (3, 2, 6);
-INSERT INTO `wishlist`
 VALUES (1, 3, 8);
-INSERT INTO `wishlist`
-VALUES (2, 3, 9);
 INSERT INTO `wishlist`
 VALUES (1, 3, 10);
 
