@@ -67,7 +67,7 @@ public class DBUtil {
     //封装预处理语句创建细节
     public PreparedStatement createStatement(String sql, HttpServletRequest request) {
         try {
-            ps = getCon(request).prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps = getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         } catch (SQLException e) {
             e.printStackTrace();
         }
