@@ -35,6 +35,7 @@
         <div class="regist-logo">用户注册</div>
     </div>
     <div class="regist">
+        <script type="text/javascript" src="scripts/verify.js"></script>
         <form action="register" method="post" class="form-horizontal"
               style="padding-right:145px;padding-left: 145px;" onsubmit="return verify()">
             <div class="form-group">
@@ -71,21 +72,6 @@
 <jsp:include page="copyright.jsp">
     <jsp:param name="copyright" value="footer"/>
 </jsp:include>
-
-<script>
-    //验证密码
-    function verify() {
-        var a = $("#inputPassword3").val();
-        // console.log(a=='')
-        var b = $("#inputPassword4").val();
-        // console.log(b)
-        if (a == '' || a != b) {
-            alert("输入有误，请重试！")
-            return false;
-        }
-    }
-</script>
-
 
 </body>
 </html>

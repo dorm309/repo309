@@ -5,12 +5,10 @@
   Time: 10:08
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8"
-         pageEncoding="UTF-8" import="entity.User" %>
-<%@ page import="dao.DBOperation" %>
-<%@ page import="entity.Commodity" %>
+<%@ page contentType="text/html;charset=UTF-8" isELIgnored="false"
+         pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="dao.CommodityDAO" %>
-<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,21 +47,20 @@
 
         <!-- 展示个人信息 -->
         <div class="info" style="padding: 20px;">
-            <%
-                User user = (User) session.getAttribute("loginUser");
-            %>
+            <c:set var="user" value="${sessionScope.loginUser}"/>
             <h2>账号</h2>
             <div class="name-detail" style=" border-bottom:1px solid #ddd;;padding-bottom: 20px;font-size: 20px;">
-                <span><%=user.getUsername()%></span>
+                <span>${user.username}</span>
             </div>
             <h2>密码</h2>
             <div class="password-detail" style=" border-bottom:1px solid #ddd;;padding-bottom: 20px;font-size: 20px;">
-                <span><%=user.getPassword()%></span></div>
+                <span>${user.password}</span></div>
         </div>
 
         <!-- 展示修改密码 -->
         <div class="modify-info" style="padding: 20px;display: none; ">
             <!-- 验证不通过则阻止向服务器提交数据 -->
+            <script type="text/javascript" src="scripts/verify.js"></script>
             <form action="updatePassword" method="post" onsubmit="return verify()">
                 <h3>输入新密码</h3>
                 <div class="name-detail" style=" border-bottom:1px solid #ddd;;padding-bottom: 20px;font-size: 20px;">
@@ -92,27 +89,19 @@
                 </thead>
                 <tbody>
                 <%
-                    //个人中心-我的发布
-                    DBOperation<Commodity> commodityDB = new CommodityDAO();
-                    List<Commodity> launched_commodities_list = commodityDB.retrieve(request);
-                    user = (User) session.getAttribute("loginUser");
-                    for (Commodity c : launched_commodities_list) {
-                        if (c.getUid() == user.getUid()) {
+                    pageContext.setAttribute("launched_commodity_list", new CommodityDAO().retrieve(request));
                 %>
-                <tr>
-                    <td><h4 class="commodityName" id="<%=c.getCid()%>"><%=c.getName()%>
-                    </h4></td>
-                    <td><span class="num"> <%=c.getPrice()%> </span></td>
-                    <td><span class="linkdel" id="<%=-c.getCid()%>">删除</span></td>
-                </tr>
-                <%
-                        }
-                    }
-                %>
+                <c:forEach items="${launched_commodity_list}" var="commodity">
+                    <c:if test="${commodity.uid == user.uid}">
+                        <tr>
+                            <td><h4 class="commodityName">${commodity.name}</h4></td>
+                            <td><span class="num"> ${commodity.price} </span></td>
+                            <td><span class="linkdel" id="${commodity.cid}">删除</span></td>
+                        </tr>
+                    </c:if>
+                </c:forEach>
                 </tbody>
-
             </table>
-
         </div>
 
         <!-- 展示我购买的商品 -->
@@ -161,7 +150,7 @@
     //删除发布事件
     $(".linkdel").click(function () {
         console.log("删除该商品")
-        var cid = document.getElementById(Math.abs($(this).attr("id"))).id
+        var cid = document.getElementById($(this).attr("id")).id
         //发送ajax请求
         $.ajax({
             url: "DeleteCommodityServlet",
@@ -173,11 +162,10 @@
             },
             success: function () {
                 alert("此商品发布记录删除成功")
-                parent.location.reload()
+                window.location.reload()
             },
         });
     });
-
     //页面切换
     $("#info").click(
         function () {
@@ -228,17 +216,5 @@
             $("#my-purchase").addClass("pactive")
             $(".my-purchase").css('display', 'block')
         });
-
-    //验证密码
-    function verify() {
-        var a = $(".password1").val();
-        //console.log(a=='')
-        var b = $(".password2").val();
-        //console.log(b)
-        if (a == '' || a != b) {
-            alert("输入有误，请重试！")
-            return false;
-        }
-    }
 </script>
 </html>

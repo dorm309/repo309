@@ -13,6 +13,7 @@ public class LoginFilter implements Filter {
     @Override
     public void init(FilterConfig config) throws ServletException {
     }
+
     @Override
     public void destroy() {
     }
@@ -21,6 +22,11 @@ public class LoginFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpSession session;
+
+        //统一页面编码格式
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html; charset=utf-8");
 
         //动态获取Web项目名
         final String webapp_name = req.getServletContext().getContextPath() + "/";
