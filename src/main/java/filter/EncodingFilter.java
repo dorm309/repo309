@@ -3,6 +3,9 @@ package filter;
 import javax.servlet.*;
 import java.io.IOException;
 
+/**
+ * 处理请求响应编码逻辑
+ */
 public class EncodingFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
     }
