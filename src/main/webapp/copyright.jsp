@@ -22,6 +22,7 @@
         </div>
         <div class="links" style="float: right;margin-top: 15px; color: #7b7b7b; font-size: 12px;">
             <h4>友情链接</h4>
+            <%--欢迎其他小组合作--%>
             <a href="https://www.swpu.edu.cn/">西南石油大学</a>
             <a href="http://xg.swpu.edu.cn/userhall/smart/student">学工系统</a>
             <a href="http://edu.sc.gov.cn/">四川省教育厅</a>

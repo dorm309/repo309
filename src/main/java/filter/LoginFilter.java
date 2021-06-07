@@ -33,7 +33,7 @@ public class LoginFilter implements Filter {
 
         //case 1：请求登录相关文件
         String uri = req.getRequestURI();
-        if (uri.contains("login") || webapp_name.equals(uri)) {
+        if (uri.contains("login") || uri.contains("regist") || webapp_name.equals(uri)) {
             chain.doFilter(request, response);
             return;
         }
