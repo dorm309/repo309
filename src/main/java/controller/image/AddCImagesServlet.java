@@ -24,6 +24,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import static util.ImageUtil.resizeImage;
+
 /**
  * 处理新增图片逻辑
  */

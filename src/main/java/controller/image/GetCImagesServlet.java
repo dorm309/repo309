@@ -23,8 +23,7 @@ public class GetCImagesServlet extends HttpServlet {
         request.setAttribute("commodity", c);
         request.setAttribute("CommodityImages", ci);
         //这里写返回参数的jsp
-        request.getRequestDispatcher("testGet.jsp").forward(request, response);
+        request.getRequestDispatcher("index").forward(request, response);
     }
-
 
 }

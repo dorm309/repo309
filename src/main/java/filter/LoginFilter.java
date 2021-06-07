@@ -10,9 +10,10 @@ import java.io.PrintWriter;
  * 处理登录筛选逻辑
  */
 public class LoginFilter implements Filter {
+    @Override
     public void init(FilterConfig config) throws ServletException {
     }
-
+    @Override
     public void destroy() {
     }
 
