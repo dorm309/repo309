@@ -1,4 +1,7 @@
-<%@ page import="entity.Commodity" %><%--
+<%@ page import="entity.Commodity" %>
+<%@ page import="entity.CommodityImages" %>
+<%@ page import="java.util.List" %>
+<%@ page import="dao.CImagesDAO" %><%--
   Created by IntelliJ IDEA.
   User: Vincent
   Date: 2021/5/24
@@ -28,24 +31,27 @@
 <!-- 中间内容 -->
 <div class="item-box item-w clearfix">
     <div class="review">
+        <%
+            Commodity c = (Commodity) session.getAttribute("commodity");
+        %>
+        <%
+            List<CommodityImages> ci = new CImagesDAO().list(c, request);
+        %>
         <div class="pic-left"><img
-                src="https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1550480620.30111865.jpg" width="560"
+                src="image/commodity/<%=ci.get(0).getId()%>.jpg" width="560"
                 height="560" alt=""></div>
         <div class="info">
-            <%
-                Commodity commodity = (Commodity) session.getAttribute("commodity");
-            %>
-            <div class="title"><h2><%=commodity.getName()%>
+            <div class="title"><h2><%=c.getName()%>
             </h2></div>
-            <div class="desc"><%=commodity.getDescription()%>
+            <div class="desc"><%=c.getDescription()%>
             </div>
-            <div class="price"><span class="num"><%=commodity.getPrice()%></span><span>元</span></div>
+            <div class="price"><span class="num"><%=c.getPrice()%></span><span>元</span></div>
             <div class="user"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> 联系方式：<span
-                    id="phonenum"><%=commodity.getContact()%></span></div>
+                    id="phonenum"><%=c.getContact()%></span></div>
             <hr>
             <form class="want">
                 <!-- 点击按钮会触发收藏事件，具体见底部js函数 -->
-                <button type="button" class="btn btn-success" id="<%=commodity.getCid()%>">
+                <button type="button" class="btn btn-success" id="<%=c.getCid()%>">
                     <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 收藏
                 </button>
             </form>

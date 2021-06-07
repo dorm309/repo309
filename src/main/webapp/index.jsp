@@ -5,6 +5,7 @@
   Time: 10:04
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ page import="dao.DBOperation" %>
@@ -12,6 +13,10 @@
 <%@ page import="dao.CategoryDAO" %>
 <%@ page import="entity.Commodity" %>
 <%@ page import="dao.CommodityDAO" %>
+<%@ page import="dao.CImagesDAO" %>
+<%@ page import="entity.CommodityImages" %>
+<%@ page import="java.util.List" %>
+<%@ page import="static util.ImageUtil.resizeImage" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,8 +111,10 @@
                 for (Commodity c : commodityDB.retrieve(request)) { %>
             <li class="item">
                 <a href="item.jsp" id="<%=c.getCid()%>" class="getCommodityInfo">
-                    <%--                    在这里替换图片内容！！--%>
-                    <img src="https://img.alicdn.com/imgextra/i2/14219353/O1CN01PuAfdi2Ixj0eYycBd_!!0-saturn_solar.jpg_468x468q75.jpg_.webp"
+                    <%
+                        List<CommodityImages> ci = new CImagesDAO().list(c, request);
+                    %>
+                    <img src="image/commodity/<%=ci.get(0).getId()%>.jpg"
                          width="228" height="151" alt="">
                     <h3 class="title"><%=c.getName()%>
                     </h3>
