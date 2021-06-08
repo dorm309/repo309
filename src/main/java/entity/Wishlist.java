@@ -5,11 +5,10 @@ package entity;
  */
 public class Wishlist {
     /*
-    Definitions：愿望单所属用户id 卖家用户id 商品列表
+    Definitions：愿望单所属用户id 商品列表
      */
     private int id;
-    private int uid;
-    private int cid;
+    Commodity commodity;
 
     /*
     Constructors
@@ -17,16 +16,14 @@ public class Wishlist {
     public Wishlist() {
     }
 
-    public Wishlist(int id, int uid, int cid) {
+    public Wishlist(int id, Commodity commodity) {
         this.id = id;
-        this.uid = uid;
-        this.cid = cid;
+        this.commodity = commodity;
     }
 
     /*
-        Getters and Setters
-    */
-
+            Getters and Setters
+        */
     public int getId() {
         return id;
     }
@@ -35,19 +32,11 @@ public class Wishlist {
         this.id = id;
     }
 
-    public int getUid() {
-        return uid;
+    public Commodity getProducts() {
+        return commodity;
     }
 
-    public void setUid(int uid) {
-        this.uid = uid;
-    }
-
-    public int getCid() {
-        return cid;
-    }
-
-    public void setCid(int cid) {
-        this.cid = cid;
+    public void setProducts(Commodity commodity) {
+        this.commodity = commodity;
     }
 }

@@ -22,8 +22,8 @@ public class WishlistDAO {
         try (PreparedStatement ps = util.createStatement(sql, request)) {
 
             ps.setInt(1, wishlist.getId());
-            ps.setInt(2, wishlist.getUid());
-            ps.setInt(3, wishlist.getCid());
+            ps.setInt(2, wishlist.getProducts().getUid());
+            ps.setInt(3, wishlist.getProducts().getCid());
             ps.execute();
 
             result = true;
@@ -47,11 +47,9 @@ public class WishlistDAO {
 
                 Wishlist wishlist = new Wishlist();
                 wishlist.setId((rs.getInt("id")));
-                wishlist.setUid(rs.getInt("uid"));
-                wishlist.setCid(rs.getInt("cid"));
+                wishlist.setProducts(new CommodityDAO().get(rs.getInt("cid"), request));
 
                 list.add(wishlist);
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -64,8 +62,8 @@ public class WishlistDAO {
 
     public boolean delete(Wishlist wishlist, HttpServletRequest request) {
         String sql = "delete from wishlist where id = " + wishlist.getId()
-                + " and uid = " + wishlist.getUid() + " and cid = "
-                + wishlist.getCid();
+                + " and uid = " + wishlist.getProducts().getUid() + " and cid = "
+                + wishlist.getProducts().getCid();
         boolean result = false;
         try (PreparedStatement ps = util.createStatement(sql, request)) {
             ps.execute(sql);
@@ -83,10 +81,9 @@ public class WishlistDAO {
 
     public boolean isExist(Wishlist wishlist, HttpServletRequest request) {
         String sql = "select * from wishlist where id = " + wishlist.getId() +
-                " and uid = " + wishlist.getUid()
-                + " and cid = " + wishlist.getCid();
+                " and uid = " + wishlist.getProducts().getUid()
+                + " and cid = " + wishlist.getProducts().getCid();
         boolean result = false;
-        Wishlist w = null;
         try (PreparedStatement ps = util.createStatement(sql, request)) {
 
             ResultSet rs = ps.executeQuery();

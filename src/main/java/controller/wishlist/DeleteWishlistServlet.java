@@ -24,7 +24,7 @@ public class DeleteWishlistServlet extends HttpServlet {
         DBOperation<Commodity> commodityDB = new CommodityDAO();
         User user = (User) request.getSession().getAttribute("loginUser");
         Commodity commodity_dao = commodityDB.get(cid, request);
-        new WishlistDAO().delete(new Wishlist(user.getUid(), commodity_dao.getUid(), cid), request);
+        new WishlistDAO().delete(new Wishlist(user.getUid(), commodityDB.get(commodity_dao.getUid(), request)), request);
     }
 
     @Override

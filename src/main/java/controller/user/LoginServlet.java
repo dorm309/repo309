@@ -39,8 +39,8 @@ public class LoginServlet extends HttpServlet {
         /*
             记住密码功能:
             1）默认勾选记住密码复选框
-            2）仅当登录成功时，才记住密码，自登录起为期14天
-            3）用户取消选中记住密码后，忘记密码
+            2）登录成功记住密码，为期14天
+            3）用户取消选中记住密码后，下次登录输入框置空
          */
         String remember = request.getParameter("remember");
         Cookie cookie_username = new Cookie("rememberUsername", username);

@@ -6,13 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8"
-         pageEncoding="UTF-8" %>
+         pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="dao.WishlistDAO" %>
-<%@ page import="entity.Wishlist" %>
-<%@ page import="java.util.List" %>
-<%@ page import="entity.User" %>
-<%@ page import="entity.Commodity" %>
-<%@ page import="dao.CommodityDAO" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,10 +32,7 @@
 <!-- 收藏夹列表 -->
 <div class="container item-w">
     <div style="margin-left:30px; ">
-        <%
-            User user = (User) session.getAttribute("loginUser");
-        %>
-        <h2><%=user.getUsername()%>的收藏夹</h2>
+        <h2>${sessionScope.loginUser.username}的收藏夹</h2>
     </div>
     <table class="tb">
         <thead>
@@ -52,30 +45,23 @@
         </thead>
         <tbody>
         <%
-            //愿望单-收藏夹
-            WishlistDAO wishlistDB = new WishlistDAO();
-            List<Wishlist> wishlist = wishlistDB.retrieve(request);
-            for (Wishlist w : wishlist) {
-                if (w.getId() == user.getUid()) {
-                    Commodity commodity = new CommodityDAO().get(w.getCid(), request);
+            pageContext.setAttribute("wishlist", new WishlistDAO().retrieve(request));
         %>
-        <tr>
-            <td>
-                <a style="display: block;" href="item.jsp" id="<%=commodity.getCid()%>" class="getCommodityInfo">
-                    <h3 class="title" id="<%=commodity.getCid()%>"><%=commodity.getName()%>
-                    </h3>
-                    <div style="color:  #b0b0b0;" class="desc"><%=commodity.getDescription()%>
-                    </div>
-                </a>
-            </td>
-            <td><span class="num"><%=commodity.getPrice()%></span></td>
-            <td><span class="linkdel_wishlist" id="<%=-commodity.getCid()%>">取消收藏</span></td>
-            <!--点击会触发取消收藏事件，具体行为见底部js函数-->
-        </tr>
-        <%
-                }
-            }
-        %>
+        <c:forEach items="${wishlist}" var="item">
+            <c:if test="${item.id == sessionScope.loginUser.uid}">
+                <tr>
+                    <td>
+                        <a style="display: block;" href="item.jsp" id="${item.products.cid}" class="getCommodityInfo">
+                            <h3 class="title">${item.products.name}</h3>
+                            <div style="color:  #b0b0b0;" class="desc">${item.products.description}</div>
+                        </a>
+                    </td>
+                    <td><span class="num">${item.products.price}</span></td>
+                    <td><span class="linkdel_wishlist" id="${item.products.cid}">取消收藏</span></td>
+                    <!--点击会触发取消收藏事件，具体行为见底部js函数-->
+                </tr>
+            </c:if>
+        </c:forEach>
         </tbody>
 
     </table>
@@ -91,7 +77,7 @@
     //取消收藏事件
     $(".linkdel_wishlist").click(function () {
         console.log("取消收藏该商品")
-        var cid = document.getElementById(Math.abs($(this).attr("id"))).id
+        var cid = document.getElementById($(this).attr("id")).id
         //发送ajax请求
         $.ajax({
             url: "DeleteWishlistServlet",

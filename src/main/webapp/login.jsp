@@ -6,24 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8"
-         pageEncoding="UTF-8" %>
+         pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
-<%
-    //设置记住密码
-    Cookie[] cookies = request.getCookies();
-    Cookie remember_username = null;
-    Cookie remember_password = null;
-
-    if (cookies != null && cookies.length > 0) {
-        for (Cookie c : cookies) {
-            if (c.getName().equals("rememberUsername"))
-                remember_username = c;
-            if (c.getName().equals("rememberPassword"))
-                remember_password = c;
-        }
-    }
-%>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,18 +29,21 @@
     <div class="login">
         <div class="title" style="margin-top: 15px; text-align: center; font-size: 30px;">登录</div>
         <form action="login" method="post" class="form-horizontal">
+            <%--获取LoginServlet响应中的cookie值--%>
+            <c:set var="remember_username" value="${cookie['rememberUsername']}"/>
+            <c:set var="remember_password" value="${cookie['rememberPassword']}"/>
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">账号</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="inputEmail3" name="username" placeholder="请输入账号"
-                           value="<%=remember_username==null?"":remember_username.getValue()%>">
+                           value="${remember_username.value}">
                 </div>
             </div>
             <div class="form-group" style="margin-top: 20px;">
                 <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
                 <div class="col-sm-10">
                     <input type="password" class="form-control" id="inputPassword3" name="password" placeholder="请输入密码"
-                           value="<%=remember_password==null?"":remember_password.getValue()%>">
+                           value="${remember_password.value}">
                 </div>
             </div>
             <div class="form-group">
@@ -62,7 +51,7 @@
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" name="remember" value="yes"
-                                <%=cookies==null?"":"checked"%>> 记住密码
+                            ${cookie==null?"":"checked"}> 记住密码
                         </label>
                     </div>
                 </div>

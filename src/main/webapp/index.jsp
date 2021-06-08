@@ -5,18 +5,11 @@
   Time: 10:04
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8"
-         pageEncoding="UTF-8" %>
-<%@ page import="dao.DBOperation" %>
-<%@ page import="entity.Category" %>
+         pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="dao.CategoryDAO" %>
-<%@ page import="entity.Commodity" %>
 <%@ page import="dao.CommodityDAO" %>
-<%@ page import="dao.CImagesDAO" %>
-<%@ page import="entity.CommodityImages" %>
-<%@ page import="java.util.List" %>
-<%@ page import="static util.ImageUtil.resizeImage" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -107,25 +100,19 @@
     <div class="bbd ">
         <ul class="clearfix">
             <%
-                DBOperation<Commodity> commodityDB = new CommodityDAO();
-                for (Commodity c : commodityDB.retrieve(request)) { %>
-            <li class="item">
-                <a href="item.jsp" id="<%=c.getCid()%>" class="getCommodityInfo">
-                    <%
-                        List<CommodityImages> ci = new CImagesDAO().list(c, request);
-                    %>
-                    <img src="image/commodity/<%=ci.get(0).getId()%>.jpg"
-                         width="228" height="151" alt="">
-                    <h3 class="title"><%=c.getName()%>
-                    </h3>
-                    <p class="desc"><%=c.getDescription()%>
-                    </p>
-                    <p class="price"><span class="num"><%=c.getPrice()%></span> <span>元</span></p>
-                </a>
-            </li>
-            <%
-                }
+                pageContext.setAttribute("launched_commodity_list", new CommodityDAO().retrieve(request));
             %>
+            <c:forEach items="${launched_commodity_list}" var="commodity">
+                <li class="item">
+                    <a href="item.jsp" id="${commodity.cid}" class="getCommodityInfo">
+                        <img src="image/commodity/${commodity.commodityImages}.jpg"
+                             width="228" height="151" alt="">
+                        <h3 class="title">${commodity.name}</h3>
+                        <p class="desc">${commodity.description}</p>
+                        <p class="price"><span class="num">${commodity.price}</span> <span>元</span></p>
+                    </a>
+                </li>
+            </c:forEach>
         </ul>
     </div>
 </div>
@@ -171,8 +158,6 @@
 
 
     function add() {
-        var that = this;
-
         //多窗口模式，层叠置顶
         layer.open({
             type: 1 //此处以iframe举例
@@ -186,9 +171,7 @@
             , yes: function () {
                 layer.closeAll();
             }
-
         });
-        //   $(".content").css('display',"block")
     }
 
 </script>
@@ -231,14 +214,11 @@
                         class="layui-input">
                     <%
                         //遍历获取商品种类，显示于下拉多选框
-                        DBOperation<Category> categoryDB = new CategoryDAO();
-                        for (Category cat : categoryDB.retrieve(request)) {
+                        pageContext.setAttribute("category_list", new CategoryDAO().retrieve(request));
                     %>
-                    <option value="<%=cat.getId()%>"><%=cat.getName()%>
-                    </option>
-                    <%
-                        }
-                    %>
+                    <c:forEach items="${category_list}" var="category">
+                        <option value="${category.id}">${category.name}</option>
+                    </c:forEach>
                 </select>
             </div>
         </div>
@@ -251,10 +231,9 @@
         <!-- 图片上传 -->
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <input type="file">
-                <%--                        <button class="layui-btn" id="test1">--%>
-                <%--                            <i class="layui-icon">&#xe67c;</i>上传图片--%>
-                <%--                        </button>--%>
+                <button class="layui-btn test">
+                    <i class="layui-icon">&#xe67c;</i>上传图片
+                </button>
             </div>
         </div>
         <!-- 提交表单 -->
@@ -269,18 +248,24 @@
 
 
 <script>
+    //上传图片
     layui.use('upload', function () {
+        //得到 upload 对象
         var upload = layui.upload;
 
-        //执行实例
+        //创建一个上传组件
         var uploadInst = upload.render({
-            elem: '#test1' //绑定元素
-            , url: '/upload/' //上传接口
-            , done: function (res) {
-                //上传完毕回调
+            elem: '.test'
+            //处理图片接口，返回 JSON 格式response
+            , url: '/upload/'
+            , accept: "images"
+            , done: function (res, index, upload) {
+                //获取当前触发上传的元素
+                var item = this.item;
+                alert("上传图片成功")
             }
             , error: function () {
-                //请求异常回调
+                alert("上传图片失败")
             }
         });
     });

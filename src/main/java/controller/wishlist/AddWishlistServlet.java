@@ -26,7 +26,7 @@ public class AddWishlistServlet extends HttpServlet {
         User user = (User) request.getSession().getAttribute("loginUser");
         Commodity commodity_dao = commodityDB.get(cid, request);
 
-        Wishlist wishlist = new Wishlist(user.getUid(), commodity_dao.getUid(), cid);
+        Wishlist wishlist = new Wishlist(user.getUid(), commodityDB.get(commodity_dao.getUid(), request));
 
         boolean flag = new WishlistDAO().isExist(wishlist, request);
         PrintWriter out = response.getWriter();
