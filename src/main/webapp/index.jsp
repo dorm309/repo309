@@ -10,6 +10,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="dao.CategoryDAO" %>
 <%@ page import="dao.CommodityDAO" %>
+<%@ page import="entity.CommodityImages" %>
+<%@ page import="java.util.List" %>
+<%@ page import="dao.CImagesDAO" %>
+<%@ page import="entity.Commodity" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -100,12 +104,17 @@
     <div class="bbd ">
         <ul class="clearfix">
             <%
-                pageContext.setAttribute("launched_commodity_list", new CommodityDAO().retrieve(request));
+                List<Commodity> commodityList = new CommodityDAO().retrieve(request);
+                for (Commodity c : commodityList) {
+                    List<CommodityImages> ci = new CImagesDAO().list(c, request);
+                    c.setCommodityImages(ci);
+                }
+                pageContext.setAttribute("launched_commodity_list", commodityList);
             %>
             <c:forEach items="${launched_commodity_list}" var="commodity">
                 <li class="item">
                     <a href="item.jsp" id="${commodity.cid}" class="getCommodityInfo">
-                        <img src="image/commodity/${commodity.commodityImages}.jpg"
+                        <img src="image/commodity/${commodity.commodityImages.get(0).id}.jpg"
                              width="228" height="151" alt="">
                         <h3 class="title">${commodity.name}</h3>
                         <p class="desc">${commodity.description}</p>

@@ -30,7 +30,7 @@
 <div class="item-box item-w clearfix">
     <div class="review">
         <div class="pic-left"><img
-                src="image/commodity/${sessionScope.commodity.commodityImages}.jpg" width="560"
+                src="image/commodity/${sessionScope.commodity.commodityImages.get(0).id}.jpg" width="560"
                 height="560" alt=""></div>
         <div class="info">
             <div class="title"><h2>${sessionScope.commodity.name}</h2></div>
