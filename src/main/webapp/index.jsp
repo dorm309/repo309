@@ -14,6 +14,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="dao.CImagesDAO" %>
 <%@ page import="entity.Commodity" %>
+<%@ page import="dao.DBOperation" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -104,7 +105,8 @@
     <div class="bbd ">
         <ul class="clearfix">
             <%
-                List<Commodity> commodityList = new CommodityDAO().retrieve(request);
+                DBOperation<Commodity> commodityDB = new CommodityDAO();
+                List<Commodity> commodityList = commodityDB.retrieve(request);
                 for (Commodity c : commodityList) {
                     List<CommodityImages> ci = new CImagesDAO().list(c, request);
                     c.setCommodityImages(ci);
@@ -113,7 +115,7 @@
             %>
             <c:forEach items="${launched_commodity_list}" var="commodity">
                 <li class="item">
-                    <a href="item.jsp" id="${commodity.cid}" class="getCommodityInfo">
+                    <a href="javascript:getDetail()" id="${commodity.cid}" class="getCommodityInfo">
                         <img src="image/commodity/${commodity.commodityImages.get(0).id}.jpg"
                              width="228" height="151" alt="">
                         <h3 class="title">${commodity.name}</h3>
@@ -165,6 +167,10 @@
 
     })
 
+    //打开新窗口，显示商品详情
+    function getDetail() {
+        window.open("item.jsp")
+    }
 
     function add() {
         //多窗口模式，层叠置顶
