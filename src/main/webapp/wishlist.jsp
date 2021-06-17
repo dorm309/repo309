@@ -12,13 +12,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>收藏夹</title>
-    <script type="text/javascript" src="plugins/jQuery/jquery-2.2.3.min.js"></script>
-    <link rel="stylesheet" href="plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/css.css">
+    <jsp:include page="header.jsp">
+        <jsp:param name="header_info" value="愿望单"/>
+    </jsp:include>
+
 </head>
 
 <body style="background-color: #f7f7f7;">
@@ -44,10 +41,7 @@
         </tr>
         </thead>
         <tbody>
-        <%
-            pageContext.setAttribute("wishlist", new WishlistDAO().retrieve(request));
-        %>
-        <c:forEach items="${wishlist}" var="item">
+        <c:forEach items="<%=new WishlistDAO().retrieve(request)%>" var="item">
             <c:if test="${item.id == sessionScope.loginUser.uid}">
                 <tr>
                     <td>

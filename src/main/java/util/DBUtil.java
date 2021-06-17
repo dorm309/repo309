@@ -50,13 +50,13 @@ public class DBUtil {
     //封装连接通道创建细节 - 重载
     public Connection getCon(HttpServletRequest request) {
         ServletContext application = request.getServletContext();
-        Map map = (Map) application.getAttribute("con");
+        Map map = (Map) application.getAttribute("DBConnection");
         Iterator it = map.keySet().iterator();
         while (it.hasNext()) {
             con = (Connection) it.next();
             boolean flag = (boolean) map.get(con);
             if (flag) {
-                map.put("con", false);
+                map.put("DBConnection", false);
                 break;
             }
         }
@@ -85,7 +85,7 @@ public class DBUtil {
             }
         }
         ServletContext application = request.getServletContext();
-        Map map = (Map) application.getAttribute("con");
+        Map map = (Map) application.getAttribute("DBConnection");
         map.put(con, true);
     }
 

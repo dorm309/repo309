@@ -11,13 +11,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>西柚有余|登录</title>
-    <link rel="stylesheet" href="plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/css.css">
-
+    <jsp:include page="header.jsp">
+        <jsp:param name="header_info" value="登录"/>
+    </jsp:include>
 </head>
 <body>
 <div class="login-header">

@@ -1,11 +1,14 @@
 package controller.commodity;
 
+import dao.CImagesDAO;
 import dao.CommodityDAO;
 import entity.Commodity;
+import entity.CommodityImages;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * 处理获取商品逻辑
@@ -19,6 +22,8 @@ public class GetCommodityServlet extends HttpServlet {
         //设置session
         HttpSession session = request.getSession();
         Commodity commodity = new CommodityDAO().get(cid, request);
+        List<CommodityImages> ci = new CImagesDAO().list(commodity, request);
+        commodity.setCommodityImages(ci);
         session.setAttribute("commodity", commodity);
     }
 

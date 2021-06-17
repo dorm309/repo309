@@ -11,13 +11,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>商品详情</title>
+    <jsp:include page="header.jsp">
+        <jsp:param name="header_info" value="商品详情"/>
+    </jsp:include>
     <script type="text/javascript" src="plugins/jQuery/jquery-2.2.3.min.js"></script>
-    <link rel="stylesheet" href="plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/css.css">
 </head>
 <body>
 <!-- 顶部导航栏 -->
@@ -30,7 +27,7 @@
 <div class="item-box item-w clearfix">
     <div class="review">
         <div class="pic-left"><img
-                src="image/commodity/${sessionScope.commodity.commodityImages}.jpg" width="560"
+                src="image/commodity/${sessionScope.commodity.commodityImages.get(0).id}.jpg" width="560"
                 height="560" alt=""></div>
         <div class="info">
             <div class="title"><h2>${sessionScope.commodity.name}</h2></div>

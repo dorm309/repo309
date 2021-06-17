@@ -37,14 +37,14 @@ public class DBConnectionListener implements ServletContextListener, HttpSession
         }
         //在整个服务器运行期间使用
         ServletContext application = sce.getServletContext();
-        application.setAttribute("con", map);
+        application.setAttribute("DBConnection", map);
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         /* This method is called when the servlet Context is undeployed or Application Server shuts down. */
         ServletContext application = sce.getServletContext();
-        Map map = (Map) application.getAttribute("con");
+        Map map = (Map) application.getAttribute("DBConnection");
         //迭代器排序无序数据
         Iterator it = map.keySet().iterator();
         while (it.hasNext()) {

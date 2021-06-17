@@ -10,22 +10,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="dao.CategoryDAO" %>
 <%@ page import="dao.CommodityDAO" %>
+<%@ page import="entity.CommodityImages" %>
+<%@ page import="java.util.List" %>
+<%@ page import="dao.CImagesDAO" %>
+<%@ page import="entity.Commodity" %>
+<%@ page import="dao.DBOperation" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>西柚有余</title>
-    <link rel="stylesheet" href="plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <script src="plugins/jQuery/jquery-2.2.3.min.js" type="text/javascript"></script>
-    <script src="plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="plugins/layui-v2.6.7/layui/css/layui.css">
-    <script src="plugins/layui-v2.6.7/layui/layui.js"></script>
-
-    <link rel="stylesheet" href="css/css.css">
-
-
+    <jsp:include page="header.jsp">
+        <jsp:param name="header_info" value="首页"/>
+    </jsp:include>
 </head>
 <body style="background-color: #f5f5f5;">
 <!-- header部分 -->
@@ -100,12 +95,18 @@
     <div class="bbd ">
         <ul class="clearfix">
             <%
-                pageContext.setAttribute("launched_commodity_list", new CommodityDAO().retrieve(request));
+                DBOperation<Commodity> commodityDB = new CommodityDAO();
+                List<Commodity> commodityList = commodityDB.retrieve(request);
+                for (Commodity c : commodityList) {
+                    List<CommodityImages> ci = new CImagesDAO().list(c, request);
+                    c.setCommodityImages(ci);
+                }
+                pageContext.setAttribute("launched_commodity_list", commodityList);
             %>
             <c:forEach items="${launched_commodity_list}" var="commodity">
                 <li class="item">
-                    <a href="item.jsp" id="${commodity.cid}" class="getCommodityInfo">
-                        <img src="image/commodity/${commodity.commodityImages}.jpg"
+                    <a href="javascript:getDetail()" id="${commodity.cid}" class="getCommodityInfo">
+                        <img src="image/commodity/${commodity.commodityImages.get(0).id}.jpg"
                              width="228" height="151" alt="">
                         <h3 class="title">${commodity.name}</h3>
                         <p class="desc">${commodity.description}</p>
@@ -156,6 +157,10 @@
 
     })
 
+    //打开新窗口，显示商品详情
+    function getDetail() {
+        window.open("item.jsp")
+    }
 
     function add() {
         //多窗口模式，层叠置顶
@@ -212,11 +217,8 @@
                         name="category" required lay-verify="required"
                         autocomplete="off"
                         class="layui-input">
-                    <%
-                        //遍历获取商品种类，显示于下拉多选框
-                        pageContext.setAttribute("category_list", new CategoryDAO().retrieve(request));
-                    %>
-                    <c:forEach items="${category_list}" var="category">
+                    <%--遍历获取商品种类，显示于下拉多选框--%>
+                    <c:forEach items="<%=new CategoryDAO().retrieve(request)%>" var="category">
                         <option value="${category.id}">${category.name}</option>
                     </c:forEach>
                 </select>
