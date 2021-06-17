@@ -21,6 +21,12 @@
     <jsp:include page="header.jsp">
         <jsp:param name="header_info" value="首页"/>
     </jsp:include>
+    <link rel="stylesheet" href="plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="plugins/jQuery/jquery-2.2.3.min.js" type="text/javascript"></script>
+    <script src="plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="plugins/layui-v2.6.7/layui/css/layui.css">
+    <script src="plugins/layui-v2.6.7/layui/layui.js"></script>
+    <link rel="stylesheet" href="css/css.css">
 </head>
 <body style="background-color: #f5f5f5;">
 <!-- header部分 -->

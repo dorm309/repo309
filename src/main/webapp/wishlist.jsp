@@ -15,7 +15,9 @@
     <jsp:include page="header.jsp">
         <jsp:param name="header_info" value="愿望单"/>
     </jsp:include>
-
+    <script type="text/javascript" src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <link rel="stylesheet" href="plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/css.css">
 </head>
 
 <body style="background-color: #f7f7f7;">

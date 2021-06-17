@@ -14,6 +14,8 @@
     <jsp:include page="header.jsp">
         <jsp:param name="header_info" value="登录"/>
     </jsp:include>
+    <link rel="stylesheet" href="plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/css.css">
 </head>
 <body>
 <div class="login-header">

@@ -13,6 +13,7 @@
     <jsp:include page="header.jsp">
         <jsp:param name="header_info" value="注册"/>
     </jsp:include>
+    <script type="text/javascript" src="plugins/jQuery/jquery-2.2.3.min.js"></script>
 </head>
 <body>
 <!-- 顶部导航栏 -->
