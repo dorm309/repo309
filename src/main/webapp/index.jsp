@@ -239,10 +239,9 @@
         <!-- 图片上传 -->
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <input type="file">
-                <%--                <button class="layui-btn test">--%>
-                <%--                    <i class="layui-icon">&#xe67c;</i>上传图片--%>
-                <%--                </button>--%>
+                <button class="layui-btn test">
+                    <i class="layui-icon">&#xe67c;</i>上传图片
+                </button>
             </div>
         </div>
         <!-- 提交表单 -->
