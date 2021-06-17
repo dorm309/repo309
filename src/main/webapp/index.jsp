@@ -193,7 +193,7 @@
 <!-- 弹框内容 -->
 <div class="content" style="display: none;">
     <!-- 表单 -->
-    <form class="layui-form" action="launchCommodity" method="post">
+    <form class="layui-form" action="AddCImagesServlet" method="post" enctype="multipart/form-data">
         <div class="layui-form-item">
             <label class="layui-form-label">商品名</label>
             <div class="layui-input-block">
@@ -237,13 +237,7 @@
             </div>
         </div>
         <!-- 图片上传 -->
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button class="layui-btn test">
-                    <i class="layui-icon">&#xe67c;</i>上传图片
-                </button>
-            </div>
-        </div>
+        <input type="file" name="filePath">
         <!-- 提交表单 -->
         <div class="layui-form-item">
             <div class="layui-input-block">

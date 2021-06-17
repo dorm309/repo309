@@ -1,7 +1,11 @@
 package controller.image;
 
 import dao.CImagesDAO;
+import dao.CategoryDAO;
 import dao.CommodityDAO;
+import dao.DBOperation;
+import entity.Category;
+import entity.User;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -10,19 +14,17 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 import entity.Commodity;
 import entity.CommodityImages;
+import util.DateUtil;
 import util.ImageUtil;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 import static util.ImageUtil.resizeImage;
 
@@ -82,8 +84,24 @@ public class AddCImagesServlet extends HttpServlet {
             System.out.println(param + ":" + Arrays.asList(value));
         }
 
-        //根据上传的参数生成productImage对象
-        int cid = Integer.parseInt(params.get("cid"));
+        //取用户输入信息
+        String commodity_name = params.get("title");
+        float commodity_price = Float.parseFloat(params.get("price"));
+        String contact = params.get("contact");
+        Date launchTime = DateUtil.d2t(new Date());
+        String description = params.get("desc");
+        Category category = new CategoryDAO().get(Integer.parseInt(params.get("category")), request);
+
+        //保存商品信息到数据库
+        User user = (User) request.getSession().getAttribute("loginUser");
+        Commodity commodity = new Commodity(
+                user.getUid(), commodity_name, contact, launchTime, commodity_price, description, category
+        );
+        DBOperation<Commodity> commodityDB = new CommodityDAO();
+        commodityDB.create(commodity, request);
+
+        int cid = commodityDB.get(commodity.getName(), request).getCid();
+
 
         Commodity c = commodityDAO.get(cid, request);
         CommodityImages ci = new CommodityImages();
@@ -118,8 +136,16 @@ public class AddCImagesServlet extends HttpServlet {
                     e.printStackTrace();
                 }
             }
+
+            PrintWriter out = response.getWriter();
+            out.write("<script>alert('商品发布成功！'); window.location='index.jsp' </script>");
+
+            out.flush();
+            out.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
     }
 }

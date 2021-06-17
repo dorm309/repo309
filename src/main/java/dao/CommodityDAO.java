@@ -155,6 +155,30 @@ public class CommodityDAO implements DBOperation<Commodity> {
 
     @Override
     public Commodity get(String name, HttpServletRequest request) {
-        return null;
+        Commodity commodity = null;
+        String sql = "select * from commodity where name = ?";
+        try (PreparedStatement ps = util.createStatement(sql, request)) {
+
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                commodity = new Commodity();
+                commodity.setCid(rs.getInt("cid"));
+                commodity.setUid(rs.getInt("uid"));
+                commodity.setName(rs.getString("name"));
+                commodity.setContact(rs.getString("contact"));
+                commodity.setCreateDate(DateUtil.t2d(rs.getTimestamp("date")));
+                commodity.setPrice(rs.getFloat("price"));
+                commodity.setDescription(rs.getString("description"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            util.close(request);
+        }
+
+        return commodity;
     }
 }
