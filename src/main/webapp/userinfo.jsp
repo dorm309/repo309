@@ -12,12 +12,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人中心</title>
-    <link rel="stylesheet" href="./plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/css.css">
+    <jsp:include page="header.jsp">
+        <jsp:param name="header_info" value="个人中心"/>
+    </jsp:include>
 </head>
 <body style="background-color: #f7f7f7;">
 <!-- 导航栏 -->
@@ -88,10 +85,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <%
-                    pageContext.setAttribute("launched_commodity_list", new CommodityDAO().retrieve(request));
-                %>
-                <c:forEach items="${launched_commodity_list}" var="commodity">
+                <c:forEach items="<%=new CommodityDAO().retrieve(request)%>" var="commodity">
                     <c:if test="${commodity.uid == user.uid}">
                         <tr>
                             <td><h4 class="commodityName">${commodity.name}</h4></td>
