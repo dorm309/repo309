@@ -237,7 +237,11 @@
             </div>
         </div>
         <!-- 图片上传 -->
-        <input type="file" name="filePath">
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="file" name="filePath">
+            </div>
+        </div>
         <!-- 提交表单 -->
         <div class="layui-form-item">
             <div class="layui-input-block">
