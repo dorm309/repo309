@@ -15,12 +15,12 @@ public class DBUtil {
      */
     private Connection con = null;
     private PreparedStatement ps = null;
-    private String ip = "127.0.0.1";
-    private int port = 3306;
-    private String database = "mess";
-    private String encoding = "UTF-8";
-    private String loginName = "root";
-    private String password = "admin";
+    private final String ip = "127.0.0.1";
+    private final int port = 3306;
+    private final String database = "mess";
+    private final String encoding = "UTF-8";
+    private final String loginName = "root";
+    private final String password = "admin";
 
     public DBUtil() {
         //测试数据库驱动连接
@@ -50,13 +50,13 @@ public class DBUtil {
     //封装连接通道创建细节 - 重载
     public Connection getCon(HttpServletRequest request) {
         ServletContext application = request.getServletContext();
-        Map map = (Map) application.getAttribute("DBConnection");
-        Iterator it = map.keySet().iterator();
+        Map<Connection, Boolean> map = (Map<Connection, Boolean>) application.getAttribute("DBConnection");
+        Iterator<Connection> it = map.keySet().iterator();
         while (it.hasNext()) {
-            con = (Connection) it.next();
-            boolean flag = (boolean) map.get(con);
+            con = it.next();
+            boolean flag = map.get(con);
             if (flag) {
-                map.put("DBConnection", false);
+                map.put(con, false);
                 break;
             }
         }
@@ -67,7 +67,7 @@ public class DBUtil {
     //封装预处理语句创建细节
     public PreparedStatement createStatement(String sql, HttpServletRequest request) {
         try {
-            ps = getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps = getCon(request).prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -85,7 +85,7 @@ public class DBUtil {
             }
         }
         ServletContext application = request.getServletContext();
-        Map map = (Map) application.getAttribute("DBConnection");
+        Map<Connection, Boolean> map = (Map<Connection, Boolean>) application.getAttribute("DBConnection");
         map.put(con, true);
     }
 

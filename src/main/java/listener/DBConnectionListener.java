@@ -21,7 +21,7 @@ public class DBConnectionListener implements ServletContextListener, HttpSession
     public void contextInitialized(ServletContextEvent sce) {
         /* This method is called when the servlet context is initialized(when the Web application is deployed). */
         DBUtil util = new DBUtil();
-        Map map = new HashMap();
+        Map<Connection, Boolean> map = new HashMap<>();
 
         //处理高并发动态开辟（保留）
 
@@ -44,11 +44,11 @@ public class DBConnectionListener implements ServletContextListener, HttpSession
     public void contextDestroyed(ServletContextEvent sce) {
         /* This method is called when the servlet Context is undeployed or Application Server shuts down. */
         ServletContext application = sce.getServletContext();
-        Map map = (Map) application.getAttribute("DBConnection");
+        Map<Connection, Boolean> map = (Map<Connection, Boolean>) application.getAttribute("DBConnection");
         //迭代器排序无序数据
-        Iterator it = map.keySet().iterator();
+        Iterator<Connection> it = map.keySet().iterator();
         while (it.hasNext()) {
-            Connection con = (Connection) it.next();
+            Connection con = it.next();
             if (con != null)
                 System.out.println("连接" + con + "已销毁");
         }
