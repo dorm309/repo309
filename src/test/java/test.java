@@ -11,5 +11,6 @@ public class test {
 
         System.out.println("执行消耗时间 = " + (endDate.getTime() -
                 startDate.getTime()) + "ms");
+        System.out.println("This is a test");
     }
 }
